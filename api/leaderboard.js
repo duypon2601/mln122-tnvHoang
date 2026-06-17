@@ -33,7 +33,16 @@ export default async function handler(req, res) {
   }
 
   if (req.method === "POST") {
-    const { name, time_str, score, errors } = req.body || {};
+    let body = req.body || {};
+    if (typeof body === "string") {
+      try {
+        body = JSON.parse(body || "{}");
+      } catch {
+        return res.status(400).json({ error: "Invalid JSON payload." });
+      }
+    }
+
+    const { name, time_str, score, errors } = body;
 
     const cleanName = typeof name === "string" ? name.trim().slice(0, 50) : "";
     const cleanTime = typeof time_str === "string" ? time_str.trim().slice(0, 20) : "";

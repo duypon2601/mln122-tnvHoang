@@ -1,64 +1,99 @@
-# Local Development
+# Hanh Trinh Kham Pha Kinh Te
 
-This app uses an API endpoint at `/api/leaderboard`.
+Single-page app with a Vercel API endpoint for the Supabase leaderboard.
 
-Do not test it with VS Code Live Server on port `5500`, because Live Server only serves static files and cannot run `/api/leaderboard`.
-
-## Run locally
-
-1. Install Node.js LTS if `npm` is not available:
+## Project Structure
 
 ```txt
-https://nodejs.org
+index.html              Static single-page app
+api/leaderboard.js      Vercel Serverless Function for leaderboard read/write
+server.js               Local-only dev server that mirrors /api/leaderboard
+.env.example            Example env file, safe to commit
+.env                    Local secrets, do not commit
+vercel.json             SPA rewrite config for Vercel
 ```
 
-After installing Node.js, close PowerShell/VS Code and open it again so the `npm` command is added to PATH.
+## Environment Variables
 
-If PowerShell blocks `npm.ps1` with an Execution Policy error, either use the `.cmd` shim:
-
-```powershell
-npm.cmd -v
-npm.cmd install
-npm.cmd run local
-```
-
-Or allow local scripts for the current Windows user:
-
-```powershell
-Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
-```
-
-2. Fill `.env` with real Supabase values:
+Create `.env` locally from `.env.example`:
 
 ```env
 SUPABASE_URL=https://your-project-ref.supabase.co
 SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
 ```
 
-3. Install dependencies:
+Use the Supabase `service_role` key only on the server. Never put it in `index.html`.
 
-```bash
-npm install
+## Supabase Table
+
+Run this in Supabase SQL Editor if the table does not exist:
+
+```sql
+create table public.leaderboard (
+  id uuid primary key default gen_random_uuid(),
+  name text not null,
+  time_str text not null,
+  score integer not null,
+  errors integer not null default 0,
+  created_at timestamptz not null default now()
+);
 ```
 
-4. Start the local Node server:
+RLS can stay disabled if all Supabase access goes through the server endpoint.
 
-```bash
-npm run local
+## Local Development
+
+Do not use VS Code Live Server on port `5500`; it cannot run `/api/leaderboard`.
+
+If PowerShell blocks `npm.ps1`, use `npm.cmd`:
+
+```powershell
+npm.cmd run local
 ```
 
-5. Open:
+Then open:
 
 ```txt
 http://localhost:3000
 ```
 
-## Vercel CLI
+## Deploy To Vercel
 
-The project also has a Vercel CLI script:
+1. Push this project to GitHub.
 
-```bash
-npm run vercel:dev
+2. In Vercel, import the GitHub repository.
+
+3. In **Project Settings -> Environment Variables**, add:
+
+```txt
+SUPABASE_URL
+SUPABASE_SERVICE_ROLE_KEY
 ```
 
-If Vercel CLI crashes on Windows with `Assertion failed: !(handle->flags & UV_HANDLE_CLOSING)`, use `npm run local` for local testing instead. Deployment to Vercel can still use the `api/leaderboard.js` serverless function.
+4. Deploy.
+
+5. After deploy, open:
+
+```txt
+https://your-project.vercel.app/api/leaderboard
+```
+
+Expected response is an array:
+
+```json
+[]
+```
+
+or existing leaderboard records.
+
+## Security Notes
+
+`.env` is ignored by Git. If it was committed before, remove it from Git tracking:
+
+```powershell
+git rm --cached .env
+git add .gitignore
+git commit -m "Stop tracking env file"
+```
+
+If a service role key was ever pushed to GitHub, rotate it in Supabase and update Vercel env variables.
