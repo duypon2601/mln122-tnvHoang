@@ -1,4 +1,12 @@
 export default async function handler(req, res) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  if (req.method === "OPTIONS") {
+    return res.status(204).end();
+  }
+
   const supabaseUrl = process.env.SUPABASE_URL;
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
@@ -43,19 +51,30 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Invalid leaderboard payload." });
     }
 
-    const response = await fetch(new URL("/rest/v1/leaderboard", supabaseUrl), {
-      method: "POST",
-      headers: {
-        ...headers,
-        Prefer: "return=minimal",
-      },
-      body: JSON.stringify({
-        name: cleanName,
-        time_str: cleanTime,
-        score,
-        errors,
-      }),
-    });
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 10000);
+    let response;
+
+    try {
+      response = await fetch(new URL("/rest/v1/leaderboard", supabaseUrl), {
+        method: "POST",
+        headers: {
+          ...headers,
+          Prefer: "return=minimal",
+        },
+        signal: controller.signal,
+        body: JSON.stringify({
+          name: cleanName,
+          time_str: cleanTime,
+          score,
+          errors,
+        }),
+      });
+    } catch (error) {
+      return res.status(502).json({ error: "Supabase request failed." });
+    } finally {
+      clearTimeout(timeout);
+    }
 
     if (!response.ok) {
       return res.status(response.status).json({ error: await response.text() });
@@ -64,6 +83,6 @@ export default async function handler(req, res) {
     return res.status(201).json({ ok: true });
   }
 
-  res.setHeader("Allow", ["GET", "POST"]);
+  res.setHeader("Allow", ["GET", "POST", "OPTIONS"]);
   return res.status(405).json({ error: "Method not allowed." });
 }

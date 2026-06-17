@@ -141,6 +141,352 @@
             transition: all 0.3s ease;
         }
 
+        /* --- App Design System ---
+           Semantic classes keep the single-file app maintainable without a build step. */
+        .app-shell {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .app-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .app-topbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 50;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #1e293b;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(12px);
+            transition: opacity 1s ease;
+        }
+
+        .app-icon-btn {
+            color: #94a3b8;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .app-icon-btn:hover {
+            color: var(--neon-gold);
+            transform: translateY(-1px);
+        }
+
+        .app-icon-btn--cyan:hover {
+            color: var(--neon-blue);
+        }
+
+        .progress-shell {
+            width: 100%;
+            height: 0.5rem;
+            overflow: hidden;
+            border: 1px solid #334155;
+            border-radius: 999px;
+            background: #1e293b;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, #f59e0b, #f97316);
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+            transition: width 0.5s ease;
+        }
+
+        .app-nav-btn {
+            position: fixed;
+            bottom: 1.5rem;
+            z-index: 60;
+            align-items: center;
+            gap: 0.5rem;
+            border-radius: 999px;
+            font-weight: 800;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+            transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+        }
+
+        .app-nav-btn--prev {
+            left: 1.5rem;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid #475569;
+            color: #94a3b8;
+        }
+
+        .app-nav-btn--prev:hover {
+            color: #fff;
+            background: #1e293b;
+        }
+
+        .app-nav-btn--next {
+            right: 1.5rem;
+            padding: 1rem 2rem;
+            border: 2px solid rgba(252, 211, 77, 0.5);
+            color: #fff;
+            background: linear-gradient(90deg, #f59e0b, #f97316);
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+        }
+
+        .app-nav-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .stage-layout {
+            min-height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 5rem 1.5rem 0;
+        }
+
+        .stage-grid {
+            display: grid;
+            width: 100%;
+            max-width: 72rem;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .stage-kicker {
+            margin-bottom: 0.5rem;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+            font-size: 0.875rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .stage-title {
+            margin-bottom: 1.5rem;
+            font-size: clamp(2.25rem, 5vw, 3rem);
+            font-weight: 800;
+            line-height: 1.1;
+        }
+
+        .info-card {
+            padding: 1.5rem;
+            border-left: 4px solid var(--neon-blue);
+            color: #cbd5e1;
+            font-size: 1.125rem;
+            line-height: 1.7;
+        }
+
+        .info-card>*+* {
+            margin-top: 1rem;
+        }
+
+        .info-card--gold {
+            border-left-color: var(--neon-gold);
+        }
+
+        .activity-panel {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #334155;
+            border-radius: 1rem;
+            background: rgba(30, 41, 59, 0.3);
+            touch-action: none;
+            user-select: none;
+        }
+
+        .activity-panel--tall {
+            height: 450px;
+        }
+
+        .hint-note {
+            margin-top: 1rem;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            background: rgba(15, 23, 42, 0.5);
+            color: #f59e0b;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+            font-size: 0.875rem;
+        }
+
+        .app-input {
+            width: 100%;
+            border: 1px solid #475569;
+            border-radius: 0.5rem;
+            background: #1e293b;
+            color: #fff;
+            padding: 0.75rem 1rem;
+            text-align: center;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .app-input:focus {
+            outline: none;
+            border-color: var(--neon-gold);
+            box-shadow: 0 0 0 1px var(--neon-gold);
+        }
+
+        .app-btn {
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            border-radius: 999px;
+            font-weight: 800;
+            transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .app-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .app-btn--primary {
+            display: inline-flex;
+            padding: 1rem 2.5rem;
+            color: #fff;
+            background: linear-gradient(90deg, #0891b2, #2563eb);
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
+        }
+
+        .app-btn--primary:hover {
+            background: linear-gradient(90deg, #06b6d4, #3b82f6);
+        }
+
+        .app-btn--outline {
+            display: inline-flex;
+            padding: 0.75rem 2rem;
+            border: 2px solid #f59e0b;
+            color: #f59e0b;
+            background: transparent;
+        }
+
+        .app-btn--outline:hover {
+            color: #0f172a;
+            background: #f59e0b;
+        }
+
+        .result-card {
+            padding: 1.5rem;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            background: rgba(15, 23, 42, 0.8);
+        }
+
+        .leaderboard-card {
+            height: 350px;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            background: rgba(15, 23, 42, 0.8);
+        }
+
+        .leaderboard-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            background: rgba(30, 41, 59, 0.5);
+        }
+
+        .leaderboard-row--first {
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            background: rgba(120, 53, 15, 0.2);
+        }
+
+        .leaderboard-row--current {
+            border-left: 4px solid var(--neon-blue);
+        }
+
+        .leaderboard-rank {
+            width: 1.5rem;
+            text-align: center;
+            color: #94a3b8;
+        }
+
+        .leaderboard-rank--first {
+            color: var(--neon-gold);
+            font-size: 1.125rem;
+            font-weight: 800;
+        }
+
+        .leaderboard-rank--second {
+            color: #cbd5e1;
+            font-weight: 800;
+        }
+
+        .leaderboard-rank--third {
+            color: #fb923c;
+            font-weight: 800;
+        }
+
+        .leaderboard-name {
+            max-width: 120px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .leaderboard-score {
+            color: var(--neon-blue);
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+            font-size: 0.875rem;
+        }
+
+        .leaderboard-meta {
+            color: #64748b;
+            font-size: 0.6rem;
+        }
+
+        .card-title {
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #334155;
+            color: #fff;
+            font-size: 1.25rem;
+            font-weight: 800;
+        }
+
+        @media (min-width: 768px) {
+            .app-topbar {
+                padding-inline: 2.5rem;
+            }
+
+            .app-nav-btn--prev {
+                left: 6rem;
+            }
+
+            .app-nav-btn--next {
+                right: 2.5rem;
+            }
+
+            .stage-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .info-card {
+                padding: 2rem;
+            }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
         /* --- Stage Management --- */
         .stage-section {
             position: absolute;
@@ -369,10 +715,10 @@
     </style>
 </head>
 
-<body class="relative w-screen h-screen">
+<body class="app-shell">
 
     <!-- Background Canvas -->
-    <canvas id="bgCanvas" class="fixed inset-0 z-[-1] pointer-events-none opacity-50"></canvas>
+    <canvas id="bgCanvas" class="app-canvas"></canvas>
 
     <!-- Transition Overlay -->
     <div id="transition-overlay"
@@ -385,19 +731,16 @@
     </div>
 
     <!-- Top Navigation (Updated to Progress Bar) -->
-    <div id="top-nav"
-        class="fixed top-0 left-0 w-full bg-slate-900/90 backdrop-blur-md border-b border-slate-800 p-3 z-50 flex justify-between items-center px-4 md:px-10 hidden opacity-0 transition-opacity duration-1000">
+    <div id="top-nav" class="app-topbar hidden opacity-0">
         <div class="flex items-center gap-4">
             <div class="text-amber-400 font-mono text-sm hidden md:flex items-center">
                 <i class="fa-solid fa-id-badge mr-2"></i><span id="nav-player-name" class="font-bold text-white">Nhà
                     Khám phá</span>
             </div>
-            <button onclick="window.toggleTheme()"
-                class="text-slate-400 hover:text-amber-400 transition-colors focus:outline-none" title="Đổi giao diện">
+            <button onclick="window.toggleTheme()" class="app-icon-btn focus:outline-none" title="Đổi giao diện">
                 <i id="theme-icon" class="fa-solid fa-moon text-xl"></i>
             </button>
-            <button onclick="window.toggleAudio()"
-                class="text-slate-400 hover:text-cyan-400 transition-colors focus:outline-none"
+            <button onclick="window.toggleAudio()" class="app-icon-btn app-icon-btn--cyan focus:outline-none"
                 title="Bật/Tắt Âm thanh">
                 <i id="audio-icon" class="fa-solid fa-volume-high text-xl"></i>
             </button>
@@ -409,10 +752,8 @@
                 class="flex justify-between text-[10px] md:text-xs text-slate-400 font-mono mb-1 uppercase tracking-widest font-bold">
                 <span>Hành Trình</span> <span id="nav-progress-text" class="text-amber-400">Trạm 1/9</span>
             </div>
-            <div class="w-full bg-slate-800 rounded-full h-2 border border-slate-700">
-                <div id="nav-progress-bar"
-                    class="bg-gradient-to-r from-amber-500 to-orange-500 h-2 rounded-full transition-all duration-500 shadow-[0_0_10px_rgba(245,158,11,0.5)]"
-                    style="width: 10%"></div>
+            <div class="progress-shell">
+                <div id="nav-progress-bar" class="progress-fill" style="width: 10%"></div>
             </div>
         </div>
 
@@ -422,11 +763,10 @@
     </div>
     <!-- Global Nav Buttons -->
     <button id="master-prev-btn" onclick="window.goToStage(window.currentStage - 1, true)"
-        class="hidden fixed bottom-6 left-6 md:bottom-10 md:left-24 text-slate-400 font-bold py-3 px-6 rounded-full glass-card hover:bg-slate-800 hover:text-white transition-colors z-[60] items-center gap-2 border border-slate-600 shadow-lg">
+        class="hidden app-nav-btn app-nav-btn--prev glass-card">
         <i class="fa-solid fa-backward"></i> <span class="hidden md:inline">Trạm trước</span>
     </button>
-    <button id="master-next-btn"
-        class="hidden fixed bottom-6 right-6 md:bottom-10 md:right-10 text-white font-bold py-4 px-8 rounded-full shadow-[0_0_20px_rgba(245,158,11,0.5)] hover:scale-105 transition-transform animate-bounce bg-gradient-to-r from-amber-500 to-orange-500 z-[60] items-center gap-2 border-2 border-amber-300/50">
+    <button id="master-next-btn" class="hidden app-nav-btn app-nav-btn--next animate-bounce">
         <span id="btn-text">Chặng tiếp theo</span> <i class="fa-solid fa-forward"></i>
     </button>
 
@@ -450,11 +790,10 @@
                     <label for="player-name-input" class="block text-cyan-400 font-mono text-sm mb-2">Nhập tên để bắt
                         đầu:</label>
                     <input type="text" id="player-name-input" placeholder="Tên nhà thám hiểm..."
-                        class="w-full bg-slate-800 text-white border border-slate-600 rounded-lg px-4 py-3 text-center focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition-colors">
+                        class="app-input">
                     <p id="name-error" class="text-red-400 text-xs mt-2 hidden animate-pulse">Vui lòng nhập tên!</p>
                 </div>
-                <button onclick="window.startGame()"
-                    class="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold py-4 px-10 rounded-full text-lg tracking-wide flex items-center justify-center mx-auto gap-3 shadow-[0_0_15px_rgba(6,182,212,0.4)] transition-transform hover:scale-105">
+                <button onclick="window.startGame()" class="app-btn app-btn--primary mx-auto text-lg tracking-wide">
                     <span>Khởi hành ngay</span> <i class="fa-solid fa-rocket"></i>
                 </button>
             </div>
@@ -462,26 +801,23 @@
 
         <!-- TRẠM 1: CẠNH TRANH TỰ DO -->
         <section id="tram-1" class="stage-section">
-            <div class="min-h-full flex items-center justify-center pt-20 px-6 md:px-16 w-full">
-                <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            <div class="stage-layout">
+                <div class="stage-grid">
                     <div class="content-reveal">
-                        <div class="text-cyan-400 font-mono mb-2 tracking-widest uppercase text-sm font-bold">Trạm 1
-                        </div>
-                        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-amber-400 glow-gold">Cạnh tranh tự do</h2>
-                        <div
-                            class="glass-card p-6 md:p-8 space-y-4 text-slate-300 leading-relaxed text-lg border-l-4 border-cyan-500">
+                        <div class="stage-kicker text-cyan-400">Trạm 1</div>
+                        <h2 class="stage-title text-amber-400 glow-gold">Cạnh tranh tự do</h2>
+                        <div class="glass-card info-card">
                             <p>Chào <strong class="text-white playerNameDisplay"></strong>, bạn vừa bước vào thị trường
                                 sơ khai.</p>
                             <p>Các doanh nghiệp tranh giành nhau những "cơ hội kinh doanh" chớp nhoáng. Kẻ nào nhanh tay
                                 tích lũy đủ Vốn sẽ sống sót và lớn mạnh.</p>
-                            <p class="text-amber-500 font-mono text-sm mt-4 bg-slate-900/50 p-2 rounded">
+                            <p class="hint-note">
                                 <i class="fa-solid fa-gamepad mr-1 animate-pulse"></i> Hãy tích lũy nhanh 10 Cơ hội
                                 (Vàng)!
                             </p>
                         </div>
                     </div>
-                    <div
-                        class="content-reveal delay-200 h-[400px] relative border border-slate-700 rounded-2xl bg-slate-800/30 overflow-hidden flex items-center justify-center touch-none select-none">
+                    <div class="content-reveal delay-200 activity-panel">
                         <div id="t1-arena" class="absolute inset-0 w-full h-full overflow-hidden"></div>
                     </div>
                 </div>
@@ -490,10 +826,9 @@
 
         <!-- TRẠM 2: TÍCH TỤ TƯ BẢN -->
         <section id="tram-2" class="stage-section">
-            <div class="min-h-full flex items-center justify-center pt-20 px-6 md:px-16 w-full bg-slate-800/10">
-                <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-                    <div
-                        class="content-reveal h-[450px] relative border border-slate-700 rounded-2xl bg-slate-800/30 overflow-hidden order-2 md:order-1 flex items-center justify-center touch-none">
+            <div class="stage-layout bg-slate-800/10">
+                <div class="stage-grid">
+                    <div class="content-reveal activity-panel activity-panel--tall order-2 md:order-1">
                         <i
                             class="fa-solid fa-arrows-down-to-center absolute text-slate-600 text-9xl opacity-20 pointer-events-none"></i>
                         <div id="t2-instruction"
@@ -508,16 +843,14 @@
                         <div id="t2-draggables" class="absolute inset-0 z-20"></div>
                     </div>
                     <div class="content-reveal delay-200 order-1 md:order-2">
-                        <div class="text-amber-400 font-mono mb-2 tracking-widest uppercase text-sm font-bold">Trạm 2
-                        </div>
-                        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Tích tụ & Tập trung</h2>
-                        <div
-                            class="glass-card p-6 md:p-8 space-y-4 text-slate-300 leading-relaxed text-lg border-l-4 border-amber-500">
+                        <div class="stage-kicker text-amber-400">Trạm 2</div>
+                        <h2 class="stage-title text-white">Tích tụ & Tập trung</h2>
+                        <div class="glass-card info-card info-card--gold">
                             <p>Cạnh tranh tàn khốc khiến doanh nghiệp nhỏ phá sản hàng loạt. C. Mác dự báo: "Tự do cạnh
                                 tranh đẻ ra tập trung sản xuất".</p>
                             <p>Các doanh nghiệp lớn sử dụng đòn bẩy <strong class="text-amber-400 glow-gold">Tín
                                     dụng</strong> để thôn tính, hình thành thế lực khổng lồ.</p>
-                            <p class="text-amber-500 font-mono text-sm mt-4 bg-slate-900/50 p-2 rounded">
+                            <p class="hint-note">
                                 <i class="fa-solid fa-fish-fins mr-1"></i> Cá lớn nuốt cá bé!
                             </p>
                         </div>
@@ -528,12 +861,12 @@
 
         <!-- TRẠM 3: BẬC THANG ĐỘC QUYỀN (NEW) -->
         <section id="tram-3" class="stage-section">
-            <div class="min-h-full flex items-center justify-center pt-20 px-4 md:px-16 w-full">
-                <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div class="stage-layout">
+                <div class="stage-grid">
                     <div class="content-reveal flex flex-col justify-center">
-                        <div class="text-purple-400 font-mono mb-2 tracking-widest uppercase text-sm font-bold">Trạm 3
+                        <div class="stage-kicker text-purple-400">Trạm 3
                         </div>
-                        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-purple-400 glow-blue">Các Hình Thức Tổ Chức
+                        <h2 class="stage-title text-purple-400 glow-blue">Các Hình Thức Tổ Chức
                         </h2>
                         <div
                             class="glass-card p-6 space-y-4 text-slate-300 leading-relaxed border-l-4 border-purple-500 mb-6">
@@ -627,12 +960,12 @@
 
         <!-- TRẠM 5: CÁN CÂN ĐỘC QUYỀN (NEW) -->
         <section id="tram-5" class="stage-section">
-            <div class="min-h-full flex items-center justify-center pt-20 px-6 md:px-16 w-full">
-                <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            <div class="stage-layout">
+                <div class="stage-grid">
                     <div class="content-reveal">
-                        <div class="text-emerald-400 font-mono mb-2 tracking-widest uppercase text-sm font-bold">Trạm 5
+                        <div class="stage-kicker text-emerald-400">Trạm 5
                         </div>
-                        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-emerald-400 glow-blue">Cán Cân Độc Quyền
+                        <h2 class="stage-title text-emerald-400 glow-blue">Cán Cân Độc Quyền
                         </h2>
                         <div
                             class="glass-card p-6 space-y-4 text-slate-300 leading-relaxed border-l-4 border-emerald-500 mb-6">
@@ -709,12 +1042,12 @@
         <!-- TRẠM 6: ĐỘC QUYỀN NHÀ NƯỚC (OLD TRAM 4) -->
         <section id="tram-6" class="stage-section transition-colors duration-500">
             <div id="t6-bg" class="absolute inset-0 z-[-1] transition-all duration-700"></div>
-            <div class="min-h-full flex items-center justify-center pt-20 px-6 md:px-16 w-full">
-                <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="stage-layout">
+                <div class="stage-grid">
                     <div class="content-reveal">
-                        <div class="text-pink-500 font-mono mb-2 tracking-widest uppercase text-sm font-bold">Trạm 6
+                        <div class="stage-kicker text-pink-500">Trạm 6
                         </div>
-                        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white leading-tight">Độc Quyền Nhà Nước</h2>
+                        <h2 class="stage-title text-white leading-tight">Độc Quyền Nhà Nước</h2>
                         <div
                             class="glass-card p-6 md:p-8 space-y-4 text-slate-300 leading-relaxed text-lg border-l-4 border-pink-500">
                             <p>Khi tư nhân khủng hoảng, họ cầu cứu quyền lực công. <strong
@@ -775,7 +1108,7 @@
         <section id="tram-7" class="stage-section">
             <div class="min-h-full flex flex-col items-center justify-center pt-24 px-4 md:px-16 w-full">
                 <div class="text-center mb-8 content-reveal z-20">
-                    <div class="text-blue-400 font-mono mb-2 tracking-widest uppercase text-sm font-bold">Trạm 7</div>
+                    <div class="stage-kicker text-blue-400">Trạm 7</div>
                     <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Độc Quyền Thời Đại 4.0</h2>
                     <p class="text-slate-300 text-sm max-w-2xl mx-auto">Vượt qua biên giới quốc gia, các tập đoàn ngày
                         nay kiểm soát thế giới theo cách tinh vi hơn rất nhiều.</p>
@@ -838,7 +1171,7 @@
         <section id="tram-8" class="stage-section">
             <div class="min-h-full flex flex-col items-center justify-center pt-24 px-4 md:px-16 w-full">
                 <div class="text-center mb-6 content-reveal">
-                    <div class="text-amber-400 font-mono mb-2 tracking-widest uppercase text-sm font-bold">Trạm 8</div>
+                    <div class="stage-kicker text-amber-400">Trạm 8</div>
                     <h2 class="text-3xl md:text-5xl font-bold text-white mb-2">Thước Đo Lịch Sử</h2>
                     <p class="text-slate-400 text-sm mb-4">Chủ nghĩa tư bản: Vai trò rực rỡ hay Giới hạn tăm tối?</p>
                     <div id="t8-instruction"
@@ -891,10 +1224,10 @@
 
         <!-- TRẠM 9: QUIZ (OLD TRAM 5) -->
         <section id="tram-9" class="stage-section">
-            <div class="min-h-full flex items-center justify-center pt-20 px-4 md:px-16 w-full">
+            <div class="stage-layout">
                 <div class="max-w-3xl w-full">
                     <div class="text-center mb-8 content-reveal">
-                        <div class="text-emerald-400 font-mono mb-2 tracking-widest uppercase text-sm font-bold">Trạm 9
+                        <div class="stage-kicker text-emerald-400">Trạm 9
                         </div>
                         <h2 class="text-3xl md:text-5xl font-bold text-white mb-2">Thử Thách Cuối Cùng</h2>
                         <p class="text-slate-400 text-sm">Bài trắc nghiệm bấm giờ chính thức bắt đầu! Cố gắng trả lời
@@ -941,9 +1274,8 @@
                     <p class="text-lg text-slate-300 mb-8">Bạn đã hoàn thành xuất sắc Hành trình khám phá Kinh tế.</p>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10 text-left">
-                        <div
-                            class="p-6 border border-amber-500/30 bg-slate-900/80 rounded-2xl glass-card flex flex-col justify-center">
-                            <h3 class="text-xl font-bold text-white mb-6 border-b border-slate-700 pb-2">Thành tích làm
+                        <div class="glass-card result-card flex flex-col justify-center">
+                            <h3 class="card-title mb-6">Thành tích làm
                                 Quiz</h3>
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
@@ -971,10 +1303,8 @@
                             </div>
                         </div>
 
-                        <div
-                            class="p-4 border border-cyan-500/30 bg-slate-900/80 rounded-2xl glass-card flex flex-col h-[350px]">
-                            <h3
-                                class="text-xl font-bold text-white mb-4 border-b border-slate-700 pb-2 flex justify-between items-center">
+                        <div class="glass-card leaderboard-card">
+                            <h3 class="card-title flex justify-between items-center">
                                 <span><i class="fa-solid fa-ranking-star text-amber-400 mr-2"></i>Bảng Phong Thần</span>
                                 <i id="lb-loading"
                                     class="fa-solid fa-circle-notch animate-spin text-cyan-400 text-sm"></i>
@@ -983,8 +1313,7 @@
                         </div>
                     </div>
 
-                    <button onclick="location.reload()"
-                        class="bg-transparent border-2 border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-slate-900 transition-colors py-3 px-8 rounded-full font-bold text-lg inline-flex items-center gap-2 mb-10">
+                    <button onclick="location.reload()" class="app-btn app-btn--outline text-lg mb-10">
                         <i class="fa-solid fa-rotate-left"></i> Chơi lại từ đầu
                     </button>
                 </div>
@@ -1030,9 +1359,18 @@
             { q: "Đâu là biểu hiện của giới hạn lịch sử của Chủ nghĩa Tư bản?", opts: ["Thúc đẩy lực lượng sản xuất", "Xã hội hóa sản xuất", "Sự phân hóa giàu nghèo sâu sắc", "Tăng cường hợp tác hòa bình"], ans: 2 }
         ];
         // --- LEADERBOARD API ---
+        function formatElapsedTime(totalSeconds) {
+            const m = String(Math.floor(totalSeconds / 60)).padStart(2, '0');
+            const s = String(totalSeconds % 60).padStart(2, '0');
+            return `${m}:${s}`;
+        }
+
         async function saveScoreAndFetchLeaderboard() {
             const timeTaken = Math.floor((Date.now() - startTime) / 1000);
+            const timeStr = formatElapsedTime(timeTaken);
             finalScore = timeTaken + (quizErrors * 10);
+            const lbList = document.getElementById('leaderboard-list');
+            lbList.innerHTML = '<p class="text-sm text-slate-500 text-center py-4">Đang lưu điểm...</p>';
 
             try {
                 const response = await fetch('/api/leaderboard', {
@@ -1040,18 +1378,49 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         name: window.playerName,
-                        time_str: document.getElementById('time-stats').innerText,
-                        score: finalScore,
-                        errors: quizErrors
+                        time_str: timeStr,
+                        score: Number(finalScore),
+                        errors: Number(quizErrors)
                     })
                 });
 
                 if (!response.ok) throw new Error(await response.text());
             } catch (error) {
                 console.error("Save leaderboard failed:", error);
+                lbList.innerHTML = '<p class="text-sm text-red-400 text-center py-4">Không lưu được điểm. Kiểm tra terminal server.</p>';
+                return;
             }
 
             fetchLeaderboard();
+        }
+
+        function escapeHtml(value) {
+            return String(value)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function renderLeaderboardRow(record, idx) {
+            const isCurrentPlayer = record.name === window.playerName && record.score === finalScore;
+            const rowClass = [
+                'leaderboard-row',
+                idx === 0 ? 'leaderboard-row--first' : '',
+                isCurrentPlayer ? 'leaderboard-row--current' : ''
+            ].filter(Boolean).join(' ');
+
+            const rankClass = [
+                'leaderboard-rank',
+                idx === 0 ? 'leaderboard-rank--first' : '',
+                idx === 1 ? 'leaderboard-rank--second' : '',
+                idx === 2 ? 'leaderboard-rank--third' : ''
+            ].filter(Boolean).join(' ');
+
+            const rankLabel = idx === 0 ? '<i class="fa-solid fa-crown"></i>' : `#${idx + 1}`;
+
+            return `<div class="${rowClass}"><div class="flex items-center gap-3"><span class="${rankClass}">${rankLabel}</span><span class="leaderboard-name">${escapeHtml(record.name)}</span></div><div class="text-right"><p class="leaderboard-score">${record.score} đ</p><p class="leaderboard-meta">${escapeHtml(record.time_str)} | Lỗi: ${record.errors}</p></div></div>`;
         }
 
         async function fetchLeaderboard() {
@@ -1068,27 +1437,7 @@
                 if (!Array.isArray(records) || records.length === 0) {
                     lbList.innerHTML = '<p class="text-sm text-slate-500 text-center py-4">Chưa có ai hoàn thành.</p>';
                 } else {
-                    records.forEach((record, idx) => {
-                        let rClass = "text-slate-400";
-                        let rIcon = `#${idx + 1}`;
-                        let bClass = "bg-slate-800/50";
-
-                        if (idx === 0) {
-                            rClass = "text-amber-400 font-bold text-lg";
-                            rIcon = '<i class="fa-solid fa-crown"></i>';
-                            bClass = "bg-amber-900/20 border border-amber-500/30";
-                        } else if (idx === 1) {
-                            rClass = "text-slate-300 font-bold";
-                        } else if (idx === 2) {
-                            rClass = "text-orange-400 font-bold";
-                        }
-
-                        const isMe = record.name === window.playerName && record.score === finalScore
-                            ? 'border-l-4 border-l-cyan-400'
-                            : '';
-
-                        lbList.innerHTML += `<div class="flex justify-between items-center p-3 rounded-lg mb-2 ${bClass} ${isMe}"><div class="flex items-center gap-3"><span class="w-6 text-center ${rClass}">${rIcon}</span><span class="text-white font-medium truncate max-w-[120px]">${record.name}</span></div><div class="text-right"><p class="text-cyan-400 font-mono text-sm">${record.score} đ</p><p class="text-[0.6rem] text-slate-500">${record.time_str} | Lỗi: ${record.errors}</p></div></div>`;
-                    });
+                    lbList.innerHTML = records.map(renderLeaderboardRow).join('');
                 }
             } catch (error) {
                 console.error("Fetch leaderboard failed:", error);
@@ -1536,9 +1885,9 @@
         function initConclusion() {
             clearInterval(timerInterval);
             let timeTaken = Math.floor((Date.now() - startTime) / 1000);
-            let m = String(Math.floor(timeTaken / 60)).padStart(2, '0'); let s = String(timeTaken % 60).padStart(2, '0');
+            const timeStr = formatElapsedTime(timeTaken);
 
-            document.getElementById('time-stats').innerText = `${m}:${s}`; document.getElementById('error-stats').innerText = quizErrors;
+            document.getElementById('time-stats').innerText = timeStr; document.getElementById('error-stats').innerText = quizErrors;
             finalScore = timeTaken + (quizErrors * 10); document.getElementById('final-score-stats').innerText = `${finalScore} đ`;
 
             let titleEl = document.getElementById('player-title');

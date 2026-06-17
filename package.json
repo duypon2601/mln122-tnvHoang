@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "local": "node server.js",
+    "vercel:dev": "vercel dev"
+  },
+  "devDependencies": {
+    "vercel": "latest"
+  }
+}
