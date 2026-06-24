@@ -1356,6 +1356,168 @@
         let quizQuestions = [];
         let quizInitialized = false;
         const QUIZ_QUESTION_COUNT = 10;
+        const embeddedQuizQuestionBank = [
+            {
+                q: "Độc quyền được hiểu đúng nhất là:",
+                opts: [
+                    "Sự cạnh tranh giữa nhiều doanh nghiệp nhỏ trên thị trường.",
+                    "Sự liên minh giữa các doanh nghiệp lớn có khả năng khống chế sản xuất và tiêu thụ hàng hóa.",
+                    "Việc Nhà nước chỉ sản xuất một loại hàng hóa.",
+                    "Sự tồn tại của một doanh nghiệp duy nhất trong mọi ngành kinh tế."
+                ],
+                ans: 1
+            },
+            {
+                q: "Nguyên nhân cơ bản nào sau đây dẫn đến sự hình thành độc quyền?",
+                opts: [
+                    "Sự phát triển của lực lượng sản xuất và cạnh tranh gay gắt.",
+                    "Sự giảm sút của khoa học – kỹ thuật.",
+                    "Sự xóa bỏ hoàn toàn cạnh tranh trên thị trường.",
+                    "Sự hạn chế trong tích tụ và tập trung sản xuất."
+                ],
+                ans: 0
+            },
+            {
+                q: "Theo quan điểm của Lênin, cạnh tranh dẫn đến:",
+                opts: [
+                    "Phân tán sản xuất và giảm quy mô doanh nghiệp.",
+                    "Tập trung sản xuất, từ đó dẫn đến độc quyền.",
+                    "Xóa bỏ hoàn toàn vai trò của nhà nước.",
+                    "Làm mất đi mọi hình thức sở hữu tư nhân."
+                ],
+                ans: 1
+            },
+            {
+                q: "Yếu tố nào sau đây góp phần thúc đẩy sự hình thành các xí nghiệp lớn vào cuối thế kỷ XIX?",
+                opts: [
+                    "Sự phát triển của lò luyện kim, động cơ điêzen, máy phát điện.",
+                    "Sự suy giảm của giao thông vận tải.",
+                    "Sự thiếu hụt nghiêm trọng về lao động.",
+                    "Sự đình trệ của khoa học – công nghệ."
+                ],
+                ans: 0
+            },
+            {
+                q: "Giá cả độc quyền cao là:",
+                opts: [
+                    "Giá mua hàng hóa thấp hơn giá thị trường cạnh tranh.",
+                    "Giá bán hàng hóa do tổ chức độc quyền áp đặt cao hơn giá thông thường.",
+                    "Giá bán hàng hóa theo đúng quy luật cung – cầu tự do.",
+                    "Giá do người tiêu dùng tự quyết định."
+                ],
+                ans: 1
+            },
+            {
+                q: "Giá cả độc quyền thấp thường xuất hiện trong trường hợp nào?",
+                opts: [
+                    "Khi tổ chức độc quyền bán hàng hóa.",
+                    "Khi tổ chức độc quyền mua hàng hóa hoặc nguyên liệu.",
+                    "Khi thị trường hoàn toàn tự do cạnh tranh.",
+                    "Khi không có sự tham gia của nhà nước."
+                ],
+                ans: 1
+            },
+            {
+                q: "Độc quyền nhà nước trong nền kinh tế thị trường tư bản chủ nghĩa là:",
+                opts: [
+                    "Nhà nước trực tiếp thay thế hoàn toàn doanh nghiệp tư nhân.",
+                    "Kiểu độc quyền mà nhà nước nắm vị thế độc quyền trên cơ sở duy trì sức mạnh của các tổ chức độc quyền ở lĩnh vực then chốt.",
+                    "Sự xóa bỏ mọi hình thức độc quyền trong nền kinh tế.",
+                    "Sự vận hành kinh tế chỉ bằng cơ chế thị trường tự do."
+                ],
+                ans: 1
+            },
+            {
+                q: "Nguyên nhân nào sau đây làm xuất hiện độc quyền nhà nước?",
+                opts: [
+                    "Tích tụ và tập trung tư bản ngày càng lớn.",
+                    "Sự giảm vai trò của các ngành kinh tế quan trọng.",
+                    "Sự triệt tiêu nhu cầu điều tiết của nền kinh tế.",
+                    "Sự suy yếu của hệ thống tài chính – tín dụng."
+                ],
+                ans: 0
+            },
+            {
+                q: "Một số ngành mới có vai trò quan trọng nhưng cần vốn lớn, thu hồi vốn chậm thường:",
+                opts: [
+                    "Doanh nghiệp tư nhân nhỏ tự đảm nhận hoàn toàn.",
+                    "Được nhà nước đứng ra đầu tư hoặc tổ chức thực hiện.",
+                    "Không cần đầu tư vì lợi nhuận cao ngay lập tức.",
+                    "Chỉ xuất hiện trong nền kinh tế tự cung tự cấp."
+                ],
+                ans: 1
+            },
+            {
+                q: "Một tác động tiêu cực điển hình của độc quyền là:",
+                opts: [
+                    "Thúc đẩy cạnh tranh hoàn hảo.",
+                    "Làm tăng hiệu quả phân phối nguồn lực.",
+                    "Gây thiệt hại cho người tiêu dùng và xã hội do cạnh tranh không hoàn hảo.",
+                    "Làm cho mọi doanh nghiệp đều có cơ hội phát triển ngang nhau."
+                ],
+                ans: 2
+            },
+            {
+                q: "Tác động tích cực của độc quyền đối với nền kinh tế là:",
+                opts: [
+                    "Kìm hãm tiến bộ kỹ thuật.",
+                    "Tạo ra khả năng lớn cho nghiên cứu và triển khai khoa học – kỹ thuật.",
+                    "Làm giảm hoàn toàn năng suất lao động.",
+                    "Xóa bỏ mọi động lực đổi mới."
+                ],
+                ans: 1
+            },
+            {
+                q: "Vì sao độc quyền có thể góp phần thúc đẩy sản xuất lớn hiện đại?",
+                opts: [
+                    "Vì độc quyền làm giảm năng lực cạnh tranh.",
+                    "Vì độc quyền tập trung được vốn, kỹ thuật và quy mô sản xuất lớn.",
+                    "Vì độc quyền không cần đầu tư vào công nghệ.",
+                    "Vì độc quyền luôn gắn với sản xuất nhỏ lẻ."
+                ],
+                ans: 1
+            },
+            {
+                q: "Khi độc quyền tư nhân chi phối mạnh nền kinh tế, hiện tượng nào dễ xảy ra nhất?",
+                opts: [
+                    "Giảm phân hóa giàu – nghèo.",
+                    "Tăng sự bình đẳng xã hội tuyệt đối.",
+                    "Gia tăng phân hóa giàu – nghèo.",
+                    "Xóa bỏ mọi mâu thuẫn giai cấp."
+                ],
+                ans: 2
+            },
+            {
+                q: "Nhà nước can thiệp vào kinh tế bằng cách nào sau đây?",
+                opts: [
+                    "Chỉ để thị trường tự điều tiết hoàn toàn.",
+                    "Sử dụng luật pháp, thuế và ngân sách để tác động đến kinh tế.",
+                    "Xóa bỏ mọi chính sách kinh tế vĩ mô.",
+                    "Không tham gia vào các quan hệ kinh tế – xã hội."
+                ],
+                ans: 1
+            },
+            {
+                q: "Bản chất của độc quyền nhà nước trong chủ nghĩa tư bản là:",
+                opts: [
+                    "Duy trì và phát triển chủ nghĩa tư bản trên cơ sở hỗ trợ các tổ chức độc quyền tư nhân.",
+                    "Xóa bỏ hoàn toàn quan hệ sản xuất tư bản chủ nghĩa.",
+                    "Thay thế kinh tế thị trường bằng kinh tế kế hoạch hóa tập trung tuyệt đối.",
+                    "Loại bỏ vai trò của các tập đoàn lớn."
+                ],
+                ans: 0
+            },
+            {
+                q: "Trong điều kiện hiện đại, sự quốc tế hóa kinh tế làm cho các tập đoàn độc quyền:",
+                opts: [
+                    "Không còn cần đến sự điều tiết của nhà nước.",
+                    "Luôn hoạt động tách rời quan hệ chính trị quốc tế.",
+                    "Mở rộng ra toàn cầu nhưng gặp rào cản quốc gia và xung đột lợi ích.",
+                    "Chỉ hoạt động trong phạm vi một địa phương."
+                ],
+                ans: 2
+            }
+        ];
 
         function shuffleQuestions(questions) {
             const shuffled = [...questions];
@@ -1403,12 +1565,18 @@
         }
 
         async function loadQuizQuestions() {
-            const response = await fetch('./question.md', { cache: 'no-store' });
-            if (!response.ok) throw new Error(`Không tải được question.md (${response.status})`);
+            let questionBank = embeddedQuizQuestionBank;
 
-            const questionBank = parseQuestionBank(await response.text());
-            if (questionBank.length < QUIZ_QUESTION_COUNT) {
-                throw new Error(`question.md cần ít nhất ${QUIZ_QUESTION_COUNT} câu hợp lệ`);
+            try {
+                const response = await fetch('/question.md', { cache: 'no-store' });
+                if (response.ok) {
+                    const markdownQuestions = parseQuestionBank(await response.text());
+                    if (markdownQuestions.length >= QUIZ_QUESTION_COUNT) {
+                        questionBank = markdownQuestions;
+                    }
+                }
+            } catch (error) {
+                console.warn("Không đọc được question.md, sử dụng bộ câu hỏi tích hợp.", error);
             }
 
             return shuffleQuestions(questionBank).slice(0, QUIZ_QUESTION_COUNT);
