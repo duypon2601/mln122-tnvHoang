@@ -7,6 +7,8 @@ loadEnv(path.join(__dirname, ".env"));
 
 const port = Number(process.env.PORT || 3000);
 const publicDir = __dirname;
+const homePagePath = path.join(__dirname, "home.html");
+const challengePagePath = path.join(__dirname, "index.html");
 
 function loadEnv(filePath) {
   if (!fs.existsSync(filePath)) return;
@@ -160,10 +162,16 @@ async function handleLeaderboard(req, res) {
 function serveStatic(req, res) {
   const reqUrl = new URL(req.url, `http://localhost:${port}`);
   let filePath = decodeURIComponent(reqUrl.pathname);
-  if (filePath === "/") filePath = "/home.html";
-  if (filePath === "/thu-thach") filePath = "/thu-thach.html";
+  let fullPath;
 
-  const fullPath = path.normalize(path.join(publicDir, filePath));
+  if (filePath === "/") {
+    fullPath = homePagePath;
+  } else if (filePath === "/thu-thach") {
+    fullPath = challengePagePath;
+  } else {
+    fullPath = path.normalize(path.join(publicDir, filePath));
+  }
+
   if (!fullPath.startsWith(publicDir)) {
     res.writeHead(403);
     res.end("Forbidden");
