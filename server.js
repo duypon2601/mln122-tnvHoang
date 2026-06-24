@@ -161,6 +161,7 @@ function serveStatic(req, res) {
   const reqUrl = new URL(req.url, `http://localhost:${port}`);
   let filePath = decodeURIComponent(reqUrl.pathname);
   if (filePath === "/") filePath = "/home.html";
+  if (filePath === "/thu-thach") filePath = "/index.html";
 
   const fullPath = path.normalize(path.join(publicDir, filePath));
   if (!fullPath.startsWith(publicDir)) {
