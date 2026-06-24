@@ -4,10 +4,6 @@
     {
       "source": "/",
       "destination": "/home.html"
-    },
-    {
-      "source": "/thu-thach",
-      "destination": "/index.html"
     }
   ]
 }
