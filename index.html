@@ -1167,7 +1167,7 @@
             </div>
         </section>
 
-        <!-- TRẠM 8: THƯỚC ĐO LỊCH SỬ (NEW) -->
+        <!-- TRẠM 8: THƯỚC ĐO LỊCH SỬ -->
         <section id="tram-8" class="stage-section">
             <div class="min-h-full flex flex-col items-center justify-center pt-24 px-4 md:px-16 w-full">
                 <div class="text-center mb-6 content-reveal">
@@ -1186,7 +1186,7 @@
                     <div
                         class="absolute inset-0 bg-red-950/90 flex flex-col justify-center items-end pr-6 md:pr-16 text-right">
                         <i class="fa-solid fa-skull text-8xl text-red-900/50 absolute top-10 right-10"></i>
-                        <h3 class="text-3xl md:text-4xl text-red-400 font-bold mb-6 z-10 glow-gold"
+                        <h3 class="text-3xl md:text-4xl text-red-400 font-bold mb-6 z-10"
                             style="text-shadow: 0 0 10px rgba(248,113,113,0.5)">Giới Hạn Lịch Sử</h3>
                         <ul class="text-slate-300 text-lg space-y-4 list-none z-10 max-w-sm">
                             <li><strong class="text-white">Sản xuất vì thiểu số:</strong> Bóc lột giá trị thặng dư, bất
@@ -1200,7 +1200,7 @@
 
                     <!-- Overlay Layer (Positive) -->
                     <div id="t8-pos-layer"
-                        class="absolute inset-0 bg-cyan-950/90 flex flex-col justify-center items-start pl-6 md:pl-16 text-left border-r-4 border-amber-400 shadow-[4px_0_20px_rgba(251,191,36,0.6)]"
+                        class="absolute inset-0 z-10 bg-cyan-950/90 flex flex-col justify-center items-start pl-6 md:pl-16 text-left border-r-4 border-amber-400 shadow-[4px_0_20px_rgba(251,191,36,0.6)] pointer-events-none"
                         style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);">
                         <i class="fa-solid fa-microchip text-8xl text-cyan-900/50 absolute top-10 left-10"></i>
                         <h3 class="text-3xl md:text-4xl text-cyan-400 font-bold mb-6 z-10 glow-blue">Vai Trò Tích Cực
@@ -1217,6 +1217,7 @@
 
                     <!-- Interactive Slider -->
                     <input type="range" id="t8-slider" min="0" max="100" value="50"
+                        aria-label="Thước đo vai trò và giới hạn lịch sử"
                         class="absolute bottom-6 left-1/2 -translate-x-1/2 w-[90%] z-20 cursor-ew-resize opacity-80 hover:opacity-100 transition-opacity">
                 </div>
             </div>
@@ -1823,19 +1824,33 @@
             playPop();
         }
 
-        // --- STAGE 8: THƯỚC ĐO LỊCH SỬ (NEW) ---
-        const slider8 = document.getElementById('t8-slider');
+        // --- STAGE 8: THƯỚC ĐO LỊCH SỬ ---
         function initTram8() {
-            slider8.addEventListener('input', (e) => {
-                let val = parseInt(e.target.value);
-                document.getElementById('t8-pos-layer').style.clipPath = `polygon(0 0, ${val}% 0, ${val}% 100%, 0 100%)`;
-                if (val < 10) { t8UnlockedRight = true; playPop(); }
-                if (val > 90) { t8UnlockedLeft = true; playPop(); }
-                if (t8UnlockedLeft && t8UnlockedRight) {
-                    document.getElementById('t8-instruction').style.display = 'none';
+            const slider = document.getElementById('t8-slider');
+            const positiveLayer = document.getElementById('t8-pos-layer');
+            const instruction = document.getElementById('t8-instruction');
+
+            if (!slider || !positiveLayer || !instruction) return;
+
+            slider.oninput = (event) => {
+                const val = Number(event.target.value);
+                positiveLayer.style.clipPath = `polygon(0 0, ${val}% 0, ${val}% 100%, 0 100%)`;
+
+                if (val <= 5 && !t8UnlockedRight) {
+                    t8UnlockedRight = true;
+                    playPop();
+                }
+                if (val >= 95 && !t8UnlockedLeft) {
+                    t8UnlockedLeft = true;
+                    playPop();
+                }
+
+                if (t8UnlockedLeft && t8UnlockedRight && instruction.style.display !== 'none') {
+                    instruction.style.display = 'none';
+                    playSuccess();
                     showMasterBtn("Làm Bài Quiz Sát Hạch");
                 }
-            });
+            };
         }
 
         // --- STAGE 9: QUIZ (OLD TRAM 5) ---

@@ -160,7 +160,7 @@ async function handleLeaderboard(req, res) {
 function serveStatic(req, res) {
   const reqUrl = new URL(req.url, `http://localhost:${port}`);
   let filePath = decodeURIComponent(reqUrl.pathname);
-  if (filePath === "/") filePath = "/index.html";
+  if (filePath === "/") filePath = "/home.html";
 
   const fullPath = path.normalize(path.join(publicDir, filePath));
   if (!fullPath.startsWith(publicDir)) {
