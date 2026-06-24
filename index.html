@@ -1250,7 +1250,8 @@
                                 style="width: 20%"></div>
                         </div>
                         <div class="flex justify-between items-center mb-6 text-sm font-mono">
-                            <span class="text-slate-300">Câu <span id="quiz-current-num">1</span>/5</span>
+                            <span class="text-slate-300">Câu <span id="quiz-current-num">1</span>/<span
+                                    id="quiz-total-count">10</span></span>
                             <span class="text-red-400">Lỗi: <span id="quiz-error-count">0</span></span>
                         </div>
                         <h3 id="quiz-question-text"
@@ -1352,13 +1353,66 @@
         let isQuizLocked = false;
         let finalScore = 0;
 
-        const quizQuestions = [
-            { q: "Theo C.Mác, tự do cạnh tranh đẻ ra điều gì?", opts: ["Khủng hoảng kinh tế liên tục", "Tập trung sản xuất, dẫn tới độc quyền", "Sự can thiệp toàn diện của Nhà nước", "Sự phân hóa giàu nghèo ngay lập tức"], ans: 1 },
-            { q: "Cartel là hình thức tổ chức độc quyền trong đó các doanh nghiệp:", opts: ["Thống nhất quản lý cả sản xuất và tiêu thụ", "Thỏa thuận về giá cả, sản lượng nhưng độc lập về sản xuất", "Mất hoàn toàn sự độc lập", "Thuộc các ngành khác nhau liên kết lại"], ans: 1 },
-            { q: "Sự xuất hiện của Độc Quyền Nhà Nước phản ánh điều gì?", opts: ["Sự sụp đổ của tư bản", "Sự cộng sinh giữa tổ chức tư nhân và bộ máy nhà nước", "Sự trở lại của tự do cạnh tranh", "Tư nhân từ bỏ sở hữu"], ans: 1 },
-            { q: "Trong thời đại ngày nay, xu hướng xuất khẩu tư bản (FDI) chủ yếu chảy theo hướng nào?", opts: ["Từ nước phát triển sang nước phát triển", "Từ nước phát triển sang nước nghèo nhất", "Chỉ chảy trong nội bộ một châu lục", "Từ nước đang phát triển sang nước phát triển"], ans: 0 },
-            { q: "Đâu là biểu hiện của giới hạn lịch sử của Chủ nghĩa Tư bản?", opts: ["Thúc đẩy lực lượng sản xuất", "Xã hội hóa sản xuất", "Sự phân hóa giàu nghèo sâu sắc", "Tăng cường hợp tác hòa bình"], ans: 2 }
-        ];
+        let quizQuestions = [];
+        let quizInitialized = false;
+        const QUIZ_QUESTION_COUNT = 10;
+
+        function shuffleQuestions(questions) {
+            const shuffled = [...questions];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        function parseQuestionBank(markdown) {
+            const answerKey = new Map();
+            const answerSection = markdown.match(/##\s*Đáp án([\s\S]*)$/i);
+
+            if (answerSection) {
+                for (const match of answerSection[1].matchAll(/Câu\s+(\d+)\s*:\s*([A-D])/gi)) {
+                    answerKey.set(Number(match[1]), match[2].toUpperCase().charCodeAt(0) - 65);
+                }
+            }
+
+            const questionContent = markdown.replace(/##\s*Đáp án[\s\S]*$/i, '').trim();
+            const blocks = questionContent.split(/(?=^\s*Câu\s+\d+(?:\s*:\s*[A-D])?\s*$)/gmi);
+
+            return blocks.map(block => {
+                const lines = block.split(/\r?\n/).map(line => line.trim()).filter(Boolean);
+                const numberMatch = lines[0]?.match(/^Câu\s+(\d+)(?:\s*:\s*([A-D]))?$/i);
+                if (!numberMatch) return null;
+
+                const number = Number(numberMatch[1]);
+                const firstOptionIndex = lines.findIndex(line => /^[A-D]\.\s*/i.test(line));
+                const optionLines = lines.filter(line => /^[A-D]\.\s*/i.test(line));
+                const inlineAnswer = numberMatch[2]?.toUpperCase();
+                const answer = inlineAnswer
+                    ? inlineAnswer.charCodeAt(0) - 65
+                    : answerKey.get(number);
+
+                if (firstOptionIndex < 0 || optionLines.length !== 4 || answer === undefined) return null;
+
+                return {
+                    q: lines.slice(1, firstOptionIndex).join(' '),
+                    opts: optionLines.map(line => line.replace(/^[A-D]\.\s*/i, '')),
+                    ans: answer
+                };
+            }).filter(Boolean);
+        }
+
+        async function loadQuizQuestions() {
+            const response = await fetch('./question.md', { cache: 'no-store' });
+            if (!response.ok) throw new Error(`Không tải được question.md (${response.status})`);
+
+            const questionBank = parseQuestionBank(await response.text());
+            if (questionBank.length < QUIZ_QUESTION_COUNT) {
+                throw new Error(`question.md cần ít nhất ${QUIZ_QUESTION_COUNT} câu hợp lệ`);
+            }
+
+            return shuffleQuestions(questionBank).slice(0, QUIZ_QUESTION_COUNT);
+        }
         // --- LEADERBOARD API ---
         function formatElapsedTime(totalSeconds) {
             const m = String(Math.floor(totalSeconds / 60)).padStart(2, '0');
@@ -1564,7 +1618,7 @@
                     (stageId === 6 && tram6Completed) ||
                     (stageId === 7 && t7NodesClicked.size === 3) ||
                     (stageId === 8 && t8UnlockedLeft && t8UnlockedRight) ||
-                    (stageId === 9 && currentQuizIndex >= quizQuestions.length);
+                    (stageId === 9 && quizQuestions.length > 0 && currentQuizIndex >= quizQuestions.length);
 
                 if (shouldShowNext && stageId < 10) {
                     let text = "Chặng tiếp theo"; if (stageId === 8) text = "Làm Bài Quiz Sát Hạch"; if (stageId === 9) text = "Xem Bảng Xếp Hạng"; showMasterBtn(text);
@@ -1854,9 +1908,24 @@
         }
 
         // --- STAGE 9: QUIZ (OLD TRAM 5) ---
-        function initQuiz() {
-            if (currentQuizIndex === 0) {
-                startTime = Date.now(); timerInterval = setInterval(updateTimer, 1000); renderQuizQuestion();
+        async function initQuiz() {
+            if (quizInitialized) return;
+            quizInitialized = true;
+
+            const questionText = document.getElementById('quiz-question-text');
+            questionText.innerText = "Đang tải 10 câu hỏi ngẫu nhiên...";
+            document.getElementById('quiz-options-container').innerHTML = '';
+
+            try {
+                quizQuestions = await loadQuizQuestions();
+                document.getElementById('quiz-total-count').innerText = quizQuestions.length;
+                startTime = Date.now();
+                timerInterval = setInterval(updateTimer, 1000);
+                renderQuizQuestion();
+            } catch (error) {
+                console.error("Load quiz failed:", error);
+                quizInitialized = false;
+                questionText.innerText = "Không tải được bộ câu hỏi. Vui lòng tải lại trang để thử lại.";
             }
         }
 
