@@ -23,7 +23,7 @@ export default async function handler(req, res) {
   if (req.method === "GET") {
     const url = new URL("/rest/v1/leaderboard", supabaseUrl);
     url.searchParams.set("select", "id,name,time_str,score,errors,created_at");
-    url.searchParams.set("order", "score.asc");
+    url.searchParams.set("order", "score.desc,time_str.asc");
     url.searchParams.set("limit", "20");
 
     const response = await fetch(url, { headers });
@@ -52,7 +52,6 @@ export default async function handler(req, res) {
       typeof time_str !== "string" ||
       !Number.isInteger(score) ||
       !Number.isInteger(errors) ||
-      score < 0 ||
       errors < 0 ||
       !cleanName ||
       !cleanTime

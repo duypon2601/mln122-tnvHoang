@@ -1241,7 +1241,7 @@
                             <div class="text-center">
                                 <i class="fa-solid fa-circle-xmark text-6xl text-red-500 mb-4 animate-bounce"></i>
                                 <h3 class="text-2xl font-bold text-white mb-2">Sai rồi!</h3>
-                                <p class="text-red-400 font-mono">Bị phạt 10 giây... Hãy suy nghĩ kỹ lại.</p>
+                                <p class="text-red-400 font-mono">-25 điểm. Bạn được chọn lại!</p>
                             </div>
                         </div>
                         <div class="w-full bg-slate-800 rounded-full h-2.5 mb-6">
@@ -1252,7 +1252,10 @@
                         <div class="flex justify-between items-center mb-6 text-sm font-mono">
                             <span class="text-slate-300">Câu <span id="quiz-current-num">1</span>/<span
                                     id="quiz-total-count">10</span></span>
-                            <span class="text-red-400">Lỗi: <span id="quiz-error-count">0</span></span>
+                            <div class="flex items-center gap-4">
+                                <span class="text-amber-400">Điểm: <span id="quiz-score">0</span></span>
+                                <span class="text-red-400">Lỗi: <span id="quiz-error-count">0</span></span>
+                            </div>
                         </div>
                         <h3 id="quiz-question-text"
                             class="text-xl md:text-2xl font-bold text-white mb-8 leading-relaxed">Đang tải câu hỏi...
@@ -1293,10 +1296,10 @@
                             </div>
                             <div class="mt-4 pt-4 border-t border-slate-700">
                                 <p class="text-xs text-slate-400 uppercase tracking-widest font-mono mb-1">Điểm xếp hạng
-                                    (Càng thấp càng tốt)</p>
+                                    (Càng cao càng tốt)</p>
                                 <p id="final-score-stats" class="text-3xl font-bold text-amber-400 glow-gold">0 đ</p>
-                                <p class="text-[0.65rem] text-slate-500 mt-1 italic">*Điểm = Thời gian làm quiz (s) +
-                                    (Số lỗi x 10s phạt)</p>
+                                <p class="text-[0.65rem] text-slate-500 mt-1 italic">*Đúng: +100 điểm, thưởng nhanh tối
+                                    đa +50 điểm; sai: -25 điểm và được chọn lại.</p>
                             </div>
                             <div class="mt-6">
                                 <p class="text-xs text-slate-400 uppercase tracking-widest font-mono mb-1">Danh hiệu đạt
@@ -1352,6 +1355,13 @@
         let quizErrors = 0;
         let isQuizLocked = false;
         let finalScore = 0;
+        let quizScore = 0;
+        let questionStartedAt = 0;
+
+        const CORRECT_ANSWER_POINTS = 100;
+        const MAX_SPEED_BONUS = 50;
+        const SPEED_BONUS_LOSS_PER_SECOND = 5;
+        const WRONG_ANSWER_PENALTY = 25;
 
         let quizQuestions = [];
         let quizInitialized = false;
@@ -1591,7 +1601,7 @@
         async function saveScoreAndFetchLeaderboard() {
             const timeTaken = Math.floor((Date.now() - startTime) / 1000);
             const timeStr = formatElapsedTime(timeTaken);
-            finalScore = timeTaken + (quizErrors * 10);
+            finalScore = quizScore;
             const lbList = document.getElementById('leaderboard-list');
             lbList.innerHTML = '<p class="text-sm text-slate-500 text-center py-4">Đang lưu điểm...</p>';
 
@@ -2102,6 +2112,7 @@
             document.getElementById('quiz-current-num').innerText = currentQuizIndex + 1;
             document.getElementById('quiz-question-text').innerText = qData.q;
             document.getElementById('quiz-progress-bar').style.width = `${((currentQuizIndex + 1) / quizQuestions.length) * 100}%`;
+            questionStartedAt = Date.now();
 
             const container = document.getElementById('quiz-options-container'); container.innerHTML = '';
             qData.opts.forEach((optText, idx) => {
@@ -2113,7 +2124,13 @@
         window.handleQuizAnswer = function (selectedIdx, btnElement) {
             if (isQuizLocked) return; const qData = quizQuestions[currentQuizIndex];
             if (selectedIdx === qData.ans) {
+                const answerSeconds = Math.floor((Date.now() - questionStartedAt) / 1000);
+                const speedBonus = Math.max(0, MAX_SPEED_BONUS - (answerSeconds * SPEED_BONUS_LOSS_PER_SECOND));
+                const earnedPoints = CORRECT_ANSWER_POINTS + speedBonus;
+                quizScore += earnedPoints;
+                document.getElementById('quiz-score').innerText = quizScore;
                 playSuccess(); btnElement.classList.replace('bg-slate-800/80', 'bg-emerald-600'); btnElement.classList.replace('border-slate-600', 'border-emerald-400'); btnElement.classList.add('text-white');
+                btnElement.innerText = `${qData.opts[selectedIdx]}  (+${earnedPoints} điểm)`;
                 isQuizLocked = true;
                 setTimeout(() => {
                     isQuizLocked = false; currentQuizIndex++;
@@ -2121,15 +2138,15 @@
                     else { document.getElementById('quiz-question-text').innerText = "Đã hoàn thành xuất sắc bài kiểm tra!"; document.getElementById('quiz-options-container').innerHTML = ''; playSuccess(); showMasterBtn("Xem Bảng Xếp Hạng"); }
                 }, 600);
             } else {
-                playAlert(); quizErrors++; document.getElementById('quiz-error-count').innerText = quizErrors;
+                playAlert(); quizErrors++; quizScore -= WRONG_ANSWER_PENALTY;
+                document.getElementById('quiz-error-count').innerText = quizErrors;
+                document.getElementById('quiz-score').innerText = quizScore;
                 btnElement.classList.replace('bg-slate-800/80', 'bg-red-900/80'); btnElement.classList.replace('border-slate-600', 'border-red-500');
                 isQuizLocked = true; document.getElementById('quiz-penalty-overlay').classList.remove('hidden');
-                document.querySelectorAll('.quiz-option').forEach(b => b.setAttribute('disabled', 'true'));
+                btnElement.setAttribute('disabled', 'true');
                 setTimeout(() => {
                     isQuizLocked = false; document.getElementById('quiz-penalty-overlay').classList.add('hidden');
-                    btnElement.classList.replace('bg-red-900/80', 'bg-slate-800/80'); btnElement.classList.replace('border-red-500', 'border-slate-600');
-                    document.querySelectorAll('.quiz-option').forEach(b => b.removeAttribute('disabled'));
-                }, 1000);
+                }, 650);
             }
         };
 
@@ -2140,11 +2157,11 @@
             const timeStr = formatElapsedTime(timeTaken);
 
             document.getElementById('time-stats').innerText = timeStr; document.getElementById('error-stats').innerText = quizErrors;
-            finalScore = timeTaken + (quizErrors * 10); document.getElementById('final-score-stats').innerText = `${finalScore} đ`;
+            finalScore = quizScore; document.getElementById('final-score-stats').innerText = `${finalScore} đ`;
 
             let titleEl = document.getElementById('player-title');
-            if (finalScore < 45) { titleEl.innerText = "Chuyên Gia Kinh Tế"; titleEl.className = "text-lg font-bold text-amber-400 glow-gold"; }
-            else if (finalScore < 80) { titleEl.innerText = "Nhà Phân Tích Nhạy Bén"; titleEl.className = "text-lg font-bold text-cyan-400"; }
+            if (finalScore >= 1200) { titleEl.innerText = "Chuyên Gia Kinh Tế"; titleEl.className = "text-lg font-bold text-amber-400 glow-gold"; }
+            else if (finalScore >= 900) { titleEl.innerText = "Nhà Phân Tích Nhạy Bén"; titleEl.className = "text-lg font-bold text-cyan-400"; }
             else { titleEl.innerText = "Thực Tập Sinh"; titleEl.className = "text-lg font-bold text-slate-300"; }
 
             playSuccess(); saveScoreAndFetchLeaderboard();
