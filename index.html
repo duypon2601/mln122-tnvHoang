@@ -928,27 +928,59 @@
                                 <i class="fa-solid fa-hand-pointer mr-2"></i>Hoàn thành 3 mặt trận
                             </div>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 content-reveal delay-200">
-                            <div id="t4-front-price"
-                                class="t4-front glass-card p-5 border-2 border-dashed border-slate-600 rounded-xl transition-all"
-                                data-target="price">
-                                <i class="fa-solid fa-tags text-3xl text-amber-400 mb-3"></i>
-                                <h3 class="font-bold text-white">Giá cả</h3>
-                                <p class="text-xs text-slate-400 mt-2">Hạ giá, nâng giá, ép giá để giành lợi thế.</p>
+                        <div class="glass-card p-5 content-reveal delay-200 border border-slate-700 rounded-2xl">
+                            <div class="grid grid-cols-[1fr_auto_1fr] gap-3 items-center mb-5">
+                                <div class="text-center">
+                                    <i class="fa-solid fa-building-shield text-4xl text-blue-400 mb-2"></i>
+                                    <h3 class="font-bold text-white">Độc quyền A</h3>
+                                    <p class="text-xs text-slate-400">Đang tìm cách mở rộng</p>
+                                </div>
+                                <div class="text-amber-400 font-black text-2xl">VS</div>
+                                <div class="text-center">
+                                    <i class="fa-solid fa-industry text-4xl text-red-400 mb-2"></i>
+                                    <h3 class="font-bold text-white">Độc quyền B</h3>
+                                    <p class="text-xs text-slate-400">Giữ thị trường hiện có</p>
+                                </div>
                             </div>
-                            <div id="t4-front-tech"
-                                class="t4-front glass-card p-5 border-2 border-dashed border-slate-600 rounded-xl transition-all"
-                                data-target="tech">
-                                <i class="fa-solid fa-flask-vial text-3xl text-cyan-400 mb-3"></i>
-                                <h3 class="font-bold text-white">Kỹ thuật</h3>
-                                <p class="text-xs text-slate-400 mt-2">Đổi mới công nghệ để giảm chi phí, tăng sức ép.</p>
+
+                            <div class="mb-5">
+                                <div class="flex justify-between text-xs font-mono text-slate-400 mb-1">
+                                    <span>Thị phần A</span>
+                                    <span id="t4-share-label" class="text-amber-400">50% - 50%</span>
+                                    <span>Thị phần B</span>
+                                </div>
+                                <div class="h-4 bg-red-900/60 rounded-full overflow-hidden border border-slate-600">
+                                    <div id="t4-share-bar"
+                                        class="h-full bg-blue-500 transition-all duration-700 shadow-[0_0_18px_rgba(59,130,246,0.7)]"
+                                        style="width: 50%"></div>
+                                </div>
                             </div>
-                            <div id="t4-front-market"
-                                class="t4-front glass-card p-5 border-2 border-dashed border-slate-600 rounded-xl transition-all md:col-span-2"
-                                data-target="market">
-                                <i class="fa-solid fa-map-location-dot text-3xl text-emerald-400 mb-3"></i>
-                                <h3 class="font-bold text-white">Thị trường tiêu thụ</h3>
-                                <p class="text-xs text-slate-400 mt-2">Tranh khách hàng, nguồn cung, hợp đồng và khu vực bán hàng.</p>
+
+                            <div class="grid grid-cols-3 gap-2 mb-5">
+                                <div class="t4-front text-center rounded-xl border border-slate-600 bg-slate-900/70 p-3 transition-all"
+                                    data-target="price">
+                                    <i class="fa-solid fa-tags text-2xl text-amber-400 mb-2"></i>
+                                    <p class="text-xs font-bold text-white">Giá cả</p>
+                                    <span class="text-[10px] text-slate-500">Chưa tung đòn</span>
+                                </div>
+                                <div class="t4-front text-center rounded-xl border border-slate-600 bg-slate-900/70 p-3 transition-all"
+                                    data-target="tech">
+                                    <i class="fa-solid fa-flask-vial text-2xl text-cyan-400 mb-2"></i>
+                                    <p class="text-xs font-bold text-white">Kỹ thuật</p>
+                                    <span class="text-[10px] text-slate-500">Chưa tung đòn</span>
+                                </div>
+                                <div class="t4-front text-center rounded-xl border border-slate-600 bg-slate-900/70 p-3 transition-all"
+                                    data-target="market">
+                                    <i class="fa-solid fa-map-location-dot text-2xl text-emerald-400 mb-2"></i>
+                                    <p class="text-xs font-bold text-white">Thị trường</p>
+                                    <span class="text-[10px] text-slate-500">Chưa tung đòn</span>
+                                </div>
+                            </div>
+
+                            <div id="t4-event-log"
+                                class="min-h-[88px] rounded-xl bg-slate-950/70 border border-slate-700 p-4 text-sm text-slate-300 leading-relaxed">
+                                <span class="text-blue-300 font-mono"><i class="fa-solid fa-circle-info mr-1"></i>Tình huống:</span>
+                                Chọn các đòn cạnh tranh bên trái để xem thị phần và mặt trận thay đổi thế nào.
                             </div>
                         </div>
                     </div>
@@ -1884,12 +1916,13 @@
 
         // --- STAGE 4: CẠNH TRANH GIỮA CÁC TỔ CHỨC ĐỘC QUYỀN ---
         let tram4Initialized = false;
+        let t4MarketShare = 50;
         function initTram4() {
             if (tram4Initialized) return; tram4Initialized = true;
             const data = [
-                { id: "price", icon: "fa-tags", title: "Chiến tranh giá", desc: "Dùng giá độc quyền cao/thấp để giành ưu thế.", color: "amber" },
-                { id: "tech", icon: "fa-microchip", title: "Đua kỹ thuật", desc: "Đổi mới công nghệ để hạ chi phí và tăng năng suất.", color: "cyan" },
-                { id: "market", icon: "fa-map-location-dot", title: "Giành thị trường", desc: "Tranh nguồn cung, khách hàng và khu vực tiêu thụ.", color: "emerald" },
+                { id: "price", icon: "fa-tags", title: "Tung đòn giá", desc: "Hạ giá có chọn lọc để kéo khách hàng từ đối thủ.", impact: 12, log: "A dùng chiến lược giá để kéo khách hàng. Cạnh tranh giữa các độc quyền không biến mất, mà chuyển thành cuộc ép giá rất căng." },
+                { id: "tech", icon: "fa-microchip", title: "Nâng cấp kỹ thuật", desc: "Đổi mới công nghệ để giảm chi phí và tăng năng suất.", impact: 15, log: "A đầu tư kỹ thuật mới, chi phí giảm nên sức cạnh tranh tăng. Đây là mặt trận công nghệ giữa các tổ chức độc quyền." },
+                { id: "market", icon: "fa-map-location-dot", title: "Giành kênh tiêu thụ", desc: "Ký hợp đồng lớn, giữ nguồn cung và mạng lưới bán hàng.", impact: 13, log: "A khóa được kênh phân phối quan trọng. Cuộc cạnh tranh chuyển sang tranh thị trường, khách hàng và nguồn cung." },
                 { id: "fake", icon: "fa-hand-peace", title: "Không còn cạnh tranh", desc: "Độc quyền không thủ tiêu cạnh tranh mà làm cạnh tranh gay gắt hơn.", color: "red" }
             ].sort(() => Math.random() - 0.5);
 
@@ -1903,15 +1936,22 @@
                     btn.classList.add('answered');
                     if (item.id === 'fake') {
                         btn.classList.add('border-red-500', 'bg-red-900/40', 'animate-shake');
+                        t4MarketShare = Math.max(40, t4MarketShare - 5);
+                        updateT4Battlefield();
+                        document.getElementById('t4-event-log').innerHTML = '<span class="text-red-400 font-mono"><i class="fa-solid fa-triangle-exclamation mr-1"></i>Chưa đúng:</span> Độc quyền không làm cạnh tranh biến mất. Nó làm cạnh tranh chuyển sang quy mô lớn hơn, gay gắt hơn và có sức ép mạnh hơn.';
                         playAlert();
                         setTimeout(() => btn.classList.remove('animate-shake'), 400);
                         return;
                     }
                     btn.classList.add('border-emerald-400', 'bg-emerald-900/40');
                     const front = document.querySelector(`.t4-front[data-target="${item.id}"]`);
-                    front.classList.remove('border-dashed', 'border-slate-600');
-                    front.classList.add('border-emerald-400', 'bg-emerald-900/30');
-                    front.insertAdjacentHTML('beforeend', `<div class="mt-3 text-xs text-emerald-300 font-mono animate-float-reveal"><i class="fa-solid fa-check mr-1"></i>Đã nhận diện</div>`);
+                    front.classList.remove('border-slate-600', 'bg-slate-900/70');
+                    front.classList.add('border-emerald-400', 'bg-emerald-900/30', 'scale-105');
+                    front.querySelector('span').className = 'text-[10px] text-emerald-300 font-mono';
+                    front.querySelector('span').innerHTML = '<i class="fa-solid fa-check mr-1"></i>Đã tác động';
+                    t4MarketShare = Math.min(90, t4MarketShare + item.impact);
+                    updateT4Battlefield();
+                    document.getElementById('t4-event-log').innerHTML = `<span class="text-emerald-400 font-mono"><i class="fa-solid fa-bolt mr-1"></i>Tác động:</span> ${item.log}`;
                     t4CompletedCount++;
                     document.getElementById('t4-bg').className = 'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[100px] z-0 pointer-events-none transition-colors duration-1000 bg-blue-900/30';
                     playSuccess();
@@ -1923,6 +1963,12 @@
                 };
                 container.appendChild(btn);
             });
+        }
+
+        function updateT4Battlefield() {
+            const rivalShare = 100 - t4MarketShare;
+            document.getElementById('t4-share-bar').style.width = `${t4MarketShare}%`;
+            document.getElementById('t4-share-label').innerText = `${t4MarketShare}% - ${rivalShare}%`;
         }
 
         // --- STAGE 5: CÁN CÂN ĐỘC QUYỀN (NEW) ---
