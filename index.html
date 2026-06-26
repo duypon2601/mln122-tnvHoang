@@ -671,14 +671,6 @@
             z-index: 10;
         }
 
-        #t8-slider::-webkit-slider-thumb {
-            background: #fbbf24;
-            box-shadow: 0 0 15px #fbbf24;
-            height: 40px;
-            width: 40px;
-            margin-top: -16px;
-        }
-
         /* Quiz Specific */
         .quiz-option {
             transition: all 0.2s;
@@ -783,8 +775,8 @@
                     Hành trình của những<br>Nhà khám phá Kinh tế
                 </h1>
                 <p class="text-lg text-slate-300 mb-8 max-w-2xl mx-auto font-light leading-relaxed">
-                    Dựa trên lý luận của C.Mác và V.I.Lênin, hãy vượt qua 9 trạm thử thách tương tác để hiểu dòng chảy
-                    từ cạnh tranh tự do đến độc quyền hiện đại.
+                    Dựa trên nội dung phần 4.1, hãy vượt qua 9 trạm thử thách tương tác để hiểu quá trình hình thành
+                    độc quyền và các quan hệ cạnh tranh trong trạng thái độc quyền.
                 </p>
                 <div class="max-w-xs mx-auto mb-8">
                     <label for="player-name-input" class="block text-cyan-400 font-mono text-sm mb-2">Nhập tên để bắt
@@ -859,62 +851,49 @@
             </div>
         </section>
 
-        <!-- TRẠM 3: BẬC THANG ĐỘC QUYỀN (NEW) -->
+        <!-- TRẠM 3: ĐỘC QUYỀN VS NGOÀI ĐỘC QUYỀN -->
         <section id="tram-3" class="stage-section">
             <div class="stage-layout">
                 <div class="stage-grid">
                     <div class="content-reveal flex flex-col justify-center">
-                        <div class="stage-kicker text-purple-400">Trạm 3
-                        </div>
-                        <h2 class="stage-title text-purple-400 glow-blue">Các Hình Thức Tổ Chức
-                        </h2>
+                        <div class="stage-kicker text-purple-400">Trạm 3</div>
+                        <h2 class="stage-title text-purple-400 glow-blue">Độc quyền vs Ngoài độc quyền</h2>
                         <div
                             class="glass-card p-6 space-y-4 text-slate-300 leading-relaxed border-l-4 border-purple-500 mb-6">
-                            <p>Tổ chức độc quyền phát triển từ liên kết ngang (cùng ngành) sang liên kết dọc (đa ngành),
-                                từ mức độ lỏng lẻo đến chặt chẽ tuyệt đối.</p>
+                            <p>Khi tổ chức độc quyền đã nắm thị trường, các doanh nghiệp ngoài độc quyền vẫn tìm cách
+                                chen vào. Cuộc cạnh tranh lúc này thường xoay quanh việc bị chèn ép giá, bị khóa nguồn
+                                nguyên liệu hoặc bị ngăn đường tiêu thụ.</p>
                         </div>
                         <div class="bg-slate-800/60 p-4 rounded-xl border border-slate-600">
                             <p class="text-sm text-cyan-400 font-mono mb-3 animate-pulse"><i
-                                    class="fa-solid fa-hand-pointer mr-2"></i> Kéo thẻ định nghĩa vào đúng Bậc thang:
+                                    class="fa-solid fa-hand-pointer mr-2"></i> Chọn 3 hành động giúp doanh nghiệp nhỏ
+                                vượt qua sức ép độc quyền:
                             </p>
-                            <div id="t3-draggables" class="flex flex-col gap-3">
+                            <div id="t3-actions" class="grid grid-cols-1 gap-3">
                                 <!-- JS Injected -->
                             </div>
                         </div>
                     </div>
 
                     <div
-                        class="content-reveal delay-200 glass-card border border-slate-700 p-6 flex flex-col justify-end min-h-[450px] touch-none">
-                        <div class="flex flex-col gap-4 relative w-full h-full justify-end">
-                            <!-- Bậc 4 -->
-                            <div class="flex items-center gap-4 self-end w-full md:w-[90%]">
-                                <div class="text-right w-24"><span class="font-bold text-red-400">Consortium</span>
-                                </div>
-                                <div class="t3-drop-slot flex-1 h-16 bg-slate-900 border-2 border-dashed border-slate-600 rounded-lg flex items-center p-3 transition-colors"
-                                    data-target="consortium"><span class="text-slate-500 text-xs italic">Thả thẻ vào
-                                        đây...</span></div>
+                        class="content-reveal delay-200 glass-card border border-slate-700 p-6 flex flex-col justify-center min-h-[450px]">
+                        <div class="relative h-[330px] rounded-2xl bg-slate-900/70 border border-slate-700 overflow-hidden">
+                            <div class="absolute inset-y-0 left-0 w-1/3 bg-red-950/50 flex flex-col items-center justify-center text-center p-4">
+                                <i class="fa-solid fa-building-shield text-6xl text-red-400 mb-4"></i>
+                                <h3 class="font-bold text-white">Tổ chức độc quyền</h3>
+                                <p class="text-xs text-slate-400 mt-2">Áp đặt giá, kiểm soát đầu vào và đầu ra</p>
                             </div>
-                            <!-- Bậc 3 -->
-                            <div class="flex items-center gap-4 self-end w-full md:w-[80%]">
-                                <div class="text-right w-24"><span class="font-bold text-orange-400">Trust</span></div>
-                                <div class="t3-drop-slot flex-1 h-16 bg-slate-900 border-2 border-dashed border-slate-600 rounded-lg flex items-center p-3 transition-colors"
-                                    data-target="trust"><span class="text-slate-500 text-xs italic">Thả thẻ vào
-                                        đây...</span></div>
+                            <div id="t3-market-wall"
+                                class="absolute inset-y-0 left-1/3 w-8 bg-purple-700 shadow-[0_0_30px_rgba(168,85,247,0.7)] transition-all duration-500">
                             </div>
-                            <!-- Bậc 2 -->
-                            <div class="flex items-center gap-4 self-end w-full md:w-[70%]">
-                                <div class="text-right w-24"><span class="font-bold text-green-400">Syndicate</span>
-                                </div>
-                                <div class="t3-drop-slot flex-1 h-16 bg-slate-900 border-2 border-dashed border-slate-600 rounded-lg flex items-center p-3 transition-colors"
-                                    data-target="syndicate"><span class="text-slate-500 text-xs italic">Thả thẻ vào
-                                        đây...</span></div>
+                            <div class="absolute inset-y-0 right-0 w-1/3 bg-cyan-950/40 flex flex-col items-center justify-center text-center p-4">
+                                <i id="t3-firm-icon" class="fa-solid fa-store text-5xl text-cyan-400 mb-4 transition-transform"></i>
+                                <h3 class="font-bold text-white">Doanh nghiệp ngoài độc quyền</h3>
+                                <p id="t3-progress-text" class="text-xs text-slate-400 mt-2">Cần 3 chiến lược đúng</p>
                             </div>
-                            <!-- Bậc 1 -->
-                            <div class="flex items-center gap-4 self-end w-full md:w-[60%]">
-                                <div class="text-right w-24"><span class="font-bold text-cyan-400">Cartel</span></div>
-                                <div class="t3-drop-slot flex-1 h-16 bg-slate-900 border-2 border-dashed border-slate-600 rounded-lg flex items-center p-3 transition-colors"
-                                    data-target="cartel"><span class="text-slate-500 text-xs italic">Thả thẻ vào
-                                        đây...</span></div>
+                            <div id="t3-result"
+                                class="hidden absolute bottom-5 left-1/2 -translate-x-1/2 bg-emerald-500/20 border border-emerald-400 text-emerald-300 px-4 py-2 rounded-full text-sm font-bold">
+                                Đã phá được hàng rào cạnh tranh!
                             </div>
                         </div>
                     </div>
@@ -922,7 +901,7 @@
             </div>
         </section>
 
-        <!-- TRẠM 4: 5 ĐẶC ĐIỂM (OLD TRAM 3) -->
+        <!-- TRẠM 4: CẠNH TRANH GIỮA CÁC TỔ CHỨC ĐỘC QUYỀN -->
         <section id="tram-4" class="stage-section">
             <div class="min-h-full flex flex-col items-center justify-center pt-24 px-4 md:px-16 w-full relative">
                 <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-900/5 rounded-full blur-[100px] z-0 pointer-events-none transition-colors duration-1000"
@@ -931,27 +910,46 @@
                     <div
                         class="w-full md:w-1/3 flex flex-col items-center bg-slate-800/40 p-4 rounded-2xl border border-slate-700">
                         <div class="text-center mb-6 content-reveal">
-                            <div class="text-blue-500 font-mono mb-1 tracking-widest uppercase text-sm font-bold">Trạm
-                                4: Bản chất</div>
-                            <h2 class="text-2xl font-bold text-white mb-2">Biểu hiện thực tiễn</h2>
-                            <p class="text-slate-400 text-sm">Kéo các hành động này...</p>
+                            <div class="text-blue-500 font-mono mb-1 tracking-widest uppercase text-sm font-bold">Trạm 4</div>
+                            <h2 class="text-2xl font-bold text-white mb-2">Cuộc đua giữa các độc quyền</h2>
+                            <p class="text-slate-400 text-sm">Chọn đúng những mặt trận cạnh tranh.</p>
                         </div>
-                        <div id="t4-draggables"
-                            class="flex flex-wrap justify-center gap-4 content-reveal delay-100 w-full min-h-[200px]">
+                        <div id="t4-rival-actions"
+                            class="flex flex-col justify-center gap-3 content-reveal delay-100 w-full min-h-[200px]">
+                            <!-- JS Injected -->
                         </div>
                     </div>
                     <div class="w-full md:w-2/3">
                         <div
                             class="text-center mb-6 content-reveal flex flex-col md:flex-row justify-between items-center">
-                            <h2 class="text-2xl font-bold text-white mb-2 md:mb-0">5 Đặc điểm (V.I. Lênin)</h2>
+                            <h2 class="text-2xl font-bold text-white mb-2 md:mb-0">Giành ưu thế trên thị trường</h2>
                             <div id="t4-instruction"
                                 class="inline-block bg-blue-500/20 text-blue-400 border border-blue-500/50 px-4 py-2 rounded-full text-xs font-mono animate-pulse font-bold">
-                                <i class="fa-solid fa-hand-pointer mr-2"></i>Thả vào đúng 5 đặc trưng
+                                <i class="fa-solid fa-hand-pointer mr-2"></i>Hoàn thành 3 mặt trận
                             </div>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 content-reveal delay-200">
-                            <!-- Slots injected by JS to keep HTML clean -->
-                            <div id="t4-slots-container" class="contents"></div>
+                            <div id="t4-front-price"
+                                class="t4-front glass-card p-5 border-2 border-dashed border-slate-600 rounded-xl transition-all"
+                                data-target="price">
+                                <i class="fa-solid fa-tags text-3xl text-amber-400 mb-3"></i>
+                                <h3 class="font-bold text-white">Giá cả</h3>
+                                <p class="text-xs text-slate-400 mt-2">Hạ giá, nâng giá, ép giá để giành lợi thế.</p>
+                            </div>
+                            <div id="t4-front-tech"
+                                class="t4-front glass-card p-5 border-2 border-dashed border-slate-600 rounded-xl transition-all"
+                                data-target="tech">
+                                <i class="fa-solid fa-flask-vial text-3xl text-cyan-400 mb-3"></i>
+                                <h3 class="font-bold text-white">Kỹ thuật</h3>
+                                <p class="text-xs text-slate-400 mt-2">Đổi mới công nghệ để giảm chi phí, tăng sức ép.</p>
+                            </div>
+                            <div id="t4-front-market"
+                                class="t4-front glass-card p-5 border-2 border-dashed border-slate-600 rounded-xl transition-all md:col-span-2"
+                                data-target="market">
+                                <i class="fa-solid fa-map-location-dot text-3xl text-emerald-400 mb-3"></i>
+                                <h3 class="font-bold text-white">Thị trường tiêu thụ</h3>
+                                <p class="text-xs text-slate-400 mt-2">Tranh khách hàng, nguồn cung, hợp đồng và khu vực bán hàng.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1104,121 +1102,86 @@
             </div>
         </section>
 
-        <!-- TRẠM 7: ĐỘC QUYỀN 4.0 (NEW) -->
+        <!-- TRẠM 7: CẠNH TRANH TRONG NỘI BỘ TỔ CHỨC ĐỘC QUYỀN -->
         <section id="tram-7" class="stage-section">
             <div class="min-h-full flex flex-col items-center justify-center pt-24 px-4 md:px-16 w-full">
                 <div class="text-center mb-8 content-reveal z-20">
                     <div class="stage-kicker text-blue-400">Trạm 7</div>
-                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Độc Quyền Thời Đại 4.0</h2>
-                    <p class="text-slate-300 text-sm max-w-2xl mx-auto">Vượt qua biên giới quốc gia, các tập đoàn ngày
-                        nay kiểm soát thế giới theo cách tinh vi hơn rất nhiều.</p>
+                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Nội bộ tổ chức độc quyền</h2>
+                    <p class="text-slate-300 text-sm max-w-2xl mx-auto">Ngay trong một tổ chức độc quyền, các thành viên
+                        vẫn có thể tranh phần lợi ích: hạn ngạch, lợi nhuận, nguồn cung và quyền chi phối quyết định.</p>
                     <div id="t7-instruction"
                         class="mt-4 inline-block bg-blue-900/40 text-blue-300 border border-blue-500/50 px-4 py-2 rounded-full text-xs font-mono animate-pulse font-bold">
-                        <i class="fa-solid fa-hand-pointer mr-2"></i>Bấm vào 3 điểm sáng trên bản đồ để giải mã
+                        <i class="fa-solid fa-hand-pointer mr-2"></i>Giải quyết 3 mâu thuẫn nội bộ
                     </div>
                 </div>
 
                 <div
-                    class="content-reveal delay-200 relative w-full max-w-4xl h-[400px] bg-slate-800/50 rounded-2xl flex items-center justify-center overflow-hidden border border-slate-700 shadow-inner group">
-                    <i
-                        class="fa-solid fa-earth-americas text-[400px] text-slate-700/30 absolute z-0 pointer-events-none transition-transform duration-1000 group-hover:scale-105"></i>
-
-                    <!-- Nodes -->
-                    <button
-                        class="t7-node absolute top-[30%] left-[25%] w-8 h-8 rounded-full z-10 focus:outline-none hover:scale-125 transition-transform cursor-pointer"
-                        data-id="1" onclick="window.openT7Modal(1)">
-                        <span class="absolute inset-0 bg-amber-400 rounded-full animate-ping opacity-75"></span>
-                        <span
-                            class="relative flex items-center justify-center w-full h-full bg-amber-500 rounded-full text-white text-xs border border-white/50 shadow-[0_0_15px_#fbbf24]"><i
-                                class="fa-solid fa-building"></i></span>
-                    </button>
-
-                    <button
-                        class="t7-node absolute top-[50%] left-[50%] w-8 h-8 rounded-full z-10 focus:outline-none hover:scale-125 transition-transform cursor-pointer"
-                        data-id="2" onclick="window.openT7Modal(2)">
-                        <span class="absolute inset-0 bg-cyan-400 rounded-full animate-ping opacity-75"
-                            style="animation-delay: 0.5s"></span>
-                        <span
-                            class="relative flex items-center justify-center w-full h-full bg-cyan-500 rounded-full text-white text-xs border border-white/50 shadow-[0_0_15px_#06b6d4]"><i
-                                class="fa-solid fa-money-bill-transfer"></i></span>
-                    </button>
-
-                    <button
-                        class="t7-node absolute top-[40%] right-[25%] w-8 h-8 rounded-full z-10 focus:outline-none hover:scale-125 transition-transform cursor-pointer"
-                        data-id="3" onclick="window.openT7Modal(3)">
-                        <span class="absolute inset-0 bg-emerald-400 rounded-full animate-ping opacity-75"
-                            style="animation-delay: 1s"></span>
-                        <span
-                            class="relative flex items-center justify-center w-full h-full bg-emerald-500 rounded-full text-white text-xs border border-white/50 shadow-[0_0_15px_#10b981]"><i
-                                class="fa-solid fa-globe"></i></span>
-                    </button>
-
-                    <!-- Modal Info -->
-                    <div id="t7-modal"
-                        class="hidden absolute inset-0 bg-slate-900/95 z-30 flex flex-col items-center justify-center p-8 text-center backdrop-blur-sm transition-opacity">
-                        <i id="t7-modal-icon" class="fa-solid fa-info-circle text-5xl mb-4 text-cyan-400 glow-blue"></i>
-                        <h3 id="t7-modal-title" class="text-2xl font-bold text-white mb-4">Title</h3>
-                        <p id="t7-modal-desc" class="text-slate-300 text-lg max-w-xl leading-relaxed mb-8">Desc</p>
-                        <button onclick="window.closeT7Modal()"
-                            class="bg-slate-700 hover:bg-slate-600 text-white px-6 py-2 rounded-full transition-colors border border-slate-500">Đóng
-                            lại</button>
+                    class="content-reveal delay-200 relative w-full max-w-4xl min-h-[420px] bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 shadow-inner p-6">
+                    <div class="grid md:grid-cols-3 gap-4 mb-6">
+                        <div class="glass-card p-4 text-center border border-cyan-500/30">
+                            <i class="fa-solid fa-factory text-4xl text-cyan-400 mb-3"></i>
+                            <h3 class="font-bold text-white">Thành viên A</h3>
+                            <p class="text-xs text-slate-400 mt-1">Muốn tăng hạn ngạch</p>
+                        </div>
+                        <div class="glass-card p-4 text-center border border-amber-500/30">
+                            <i class="fa-solid fa-warehouse text-4xl text-amber-400 mb-3"></i>
+                            <h3 class="font-bold text-white">Thành viên B</h3>
+                            <p class="text-xs text-slate-400 mt-1">Muốn chia lợi nhuận cao hơn</p>
+                        </div>
+                        <div class="glass-card p-4 text-center border border-pink-500/30">
+                            <i class="fa-solid fa-chart-pie text-4xl text-pink-400 mb-3"></i>
+                            <h3 class="font-bold text-white">Ban điều phối</h3>
+                            <p class="text-xs text-slate-400 mt-1">Cố giữ thỏa thuận chung</p>
+                        </div>
+                    </div>
+                    <div id="t7-conflicts" class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <!-- JS Injected -->
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- TRẠM 8: THƯỚC ĐO LỊCH SỬ -->
+        <!-- TRẠM 8: TỔNG HỢP QUAN HỆ CẠNH TRANH -->
         <section id="tram-8" class="stage-section">
             <div class="min-h-full flex flex-col items-center justify-center pt-24 px-4 md:px-16 w-full">
                 <div class="text-center mb-6 content-reveal">
                     <div class="stage-kicker text-amber-400">Trạm 8</div>
-                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-2">Thước Đo Lịch Sử</h2>
-                    <p class="text-slate-400 text-sm mb-4">Chủ nghĩa tư bản: Vai trò rực rỡ hay Giới hạn tăm tối?</p>
+                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-2">Phân loại tình huống</h2>
+                    <p class="text-slate-400 text-sm mb-4">Nhận diện đúng 3 quan hệ cạnh tranh trong trạng thái độc quyền.</p>
                     <div id="t8-instruction"
                         class="inline-block bg-slate-800 text-slate-300 border border-slate-600 px-4 py-2 rounded-full text-xs font-mono animate-pulse font-bold">
-                        <i class="fa-solid fa-arrows-left-right mr-2"></i>Kéo thanh trượt về 2 cực để khám phá trọn vẹn
+                        <i class="fa-solid fa-list-check mr-2"></i>Chọn đúng nhóm cho từng tình huống
                     </div>
                 </div>
 
                 <div
-                    class="content-reveal delay-200 relative w-full max-w-5xl h-[450px] rounded-2xl overflow-hidden shadow-2xl border border-slate-700 group touch-none">
-                    <!-- Base Layer (Negative) -->
-                    <div
-                        class="absolute inset-0 bg-red-950/90 flex flex-col justify-center items-end pr-6 md:pr-16 text-right">
-                        <i class="fa-solid fa-skull text-8xl text-red-900/50 absolute top-10 right-10"></i>
-                        <h3 class="text-3xl md:text-4xl text-red-400 font-bold mb-6 z-10"
-                            style="text-shadow: 0 0 10px rgba(248,113,113,0.5)">Giới Hạn Lịch Sử</h3>
-                        <ul class="text-slate-300 text-lg space-y-4 list-none z-10 max-w-sm">
-                            <li><strong class="text-white">Sản xuất vì thiểu số:</strong> Bóc lột giá trị thặng dư, bất
-                                chấp lợi ích chung.</li>
-                            <li><strong class="text-white">Chiến tranh & Xung đột:</strong> Phân chia thị trường bằng vũ
-                                lực.</li>
-                            <li><strong class="text-white">Phân hóa giàu nghèo:</strong> Bất bình đẳng ngày càng sâu
-                                sắc.</li>
-                        </ul>
+                    class="content-reveal delay-200 relative w-full max-w-5xl rounded-2xl overflow-hidden shadow-2xl border border-slate-700 bg-slate-900/70 p-6">
+                    <div id="t8-scenario-card" class="glass-card p-6 mb-5 min-h-[130px] border-l-4 border-amber-400">
+                        <div class="text-xs text-amber-400 font-mono mb-2">Tình huống <span id="t8-current">1</span>/<span id="t8-total">6</span></div>
+                        <p id="t8-scenario-text" class="text-lg text-white font-semibold leading-relaxed">Đang tải...</p>
                     </div>
-
-                    <!-- Overlay Layer (Positive) -->
-                    <div id="t8-pos-layer"
-                        class="absolute inset-0 z-10 bg-cyan-950/90 flex flex-col justify-center items-start pl-6 md:pl-16 text-left border-r-4 border-amber-400 shadow-[4px_0_20px_rgba(251,191,36,0.6)] pointer-events-none"
-                        style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);">
-                        <i class="fa-solid fa-microchip text-8xl text-cyan-900/50 absolute top-10 left-10"></i>
-                        <h3 class="text-3xl md:text-4xl text-cyan-400 font-bold mb-6 z-10 glow-blue">Vai Trò Tích Cực
-                        </h3>
-                        <ul class="text-slate-300 text-lg space-y-4 list-none z-10 max-w-sm">
-                            <li><strong class="text-white">Phát triển Lực lượng sản xuất:</strong> Từ cơ khí đến tự động
-                                hóa, AI.</li>
-                            <li><strong class="text-white">Xã hội hóa sản xuất:</strong> Liên kết các ngành, các quốc
-                                gia.</li>
-                            <li><strong class="text-white">Khối lượng của cải khổng lồ:</strong> Đáp ứng đa dạng nhu cầu
-                                xã hội.</li>
-                        </ul>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <button class="t8-choice glass-card p-4 hover:border-cyan-400 border border-slate-600 rounded-xl text-left"
+                            data-type="outside">
+                            <i class="fa-solid fa-store text-cyan-400 text-2xl mb-2"></i>
+                            <h3 class="font-bold text-white">Độc quyền vs ngoài độc quyền</h3>
+                            <p class="text-xs text-slate-400 mt-1">Doanh nghiệp nhỏ/ngoài liên minh bị chèn ép hoặc tìm đường chen vào.</p>
+                        </button>
+                        <button class="t8-choice glass-card p-4 hover:border-purple-400 border border-slate-600 rounded-xl text-left"
+                            data-type="between">
+                            <i class="fa-solid fa-building-shield text-purple-400 text-2xl mb-2"></i>
+                            <h3 class="font-bold text-white">Giữa các tổ chức độc quyền</h3>
+                            <p class="text-xs text-slate-400 mt-1">Các khối độc quyền tranh giá, công nghệ, nguồn cung, thị trường.</p>
+                        </button>
+                        <button class="t8-choice glass-card p-4 hover:border-amber-400 border border-slate-600 rounded-xl text-left"
+                            data-type="inside">
+                            <i class="fa-solid fa-people-arrows text-amber-400 text-2xl mb-2"></i>
+                            <h3 class="font-bold text-white">Trong nội bộ tổ chức độc quyền</h3>
+                            <p class="text-xs text-slate-400 mt-1">Thành viên cùng liên minh tranh hạn ngạch, lợi nhuận, quyền chi phối.</p>
+                        </button>
                     </div>
-
-                    <!-- Interactive Slider -->
-                    <input type="range" id="t8-slider" min="0" max="100" value="50"
-                        aria-label="Thước đo vai trò và giới hạn lịch sử"
-                        class="absolute bottom-6 left-1/2 -translate-x-1/2 w-[90%] z-20 cursor-ew-resize opacity-80 hover:opacity-100 transition-opacity">
+                    <div id="t8-feedback" class="mt-4 text-center font-mono text-sm min-h-[24px]"></div>
                 </div>
             </div>
         </section>
@@ -1341,14 +1304,14 @@
 
         // Stage states
         let tram1Completed = false;
-        let t3MatchedCount = 0;
-        let t4MatchedCount = 0;
+        let t3CompletedCount = 0;
+        let t4CompletedCount = 0;
         let t5PosCount = 0;
         let t5NegCount = 0;
         let tram6Completed = false;
-        let t7NodesClicked = new Set();
-        let t8UnlockedLeft = false;
-        let t8UnlockedRight = false;
+        let t7CompletedCount = 0;
+        let t8CurrentIndex = 0;
+        let t8CompletedCount = 0;
 
         // Quiz State
         let currentQuizIndex = 0;
@@ -1727,12 +1690,12 @@
         const transitionData = [
             { text: "Khởi động...", desc: "Tiến vào Thị trường Sơ khai" }, // to 1
             { text: "Lịch sử chuyển mình...", desc: "Kỷ nguyên Tích Tụ & Tập trung" }, // to 2
-            { text: "Bậc thang quyền lực...", desc: "Sự tiến hóa của Tổ chức Độc Quyền" }, // to 3
-            { text: "Bản chất hé lộ...", desc: "5 Đặc điểm cốt lõi" }, // to 4
+            { text: "Hàng rào thị trường...", desc: "Độc quyền đối đầu doanh nghiệp ngoài độc quyền" }, // to 3
+            { text: "Các ông lớn va chạm...", desc: "Cạnh tranh giữa các tổ chức độc quyền" }, // to 4
             { text: "Tác động kép...", desc: "Cân đong Mặt trái và Mặt phải" }, // to 5
             { text: "Sự can thiệp tối cao...", desc: "Bàn tay của Nhà Nước" }, // to 6
-            { text: "Biến đổi không ngừng...", desc: "Độc quyền thời đại 4.0" }, // to 7
-            { text: "Nhìn lại lịch sử...", desc: "Vai trò Chủ nghĩa Tư bản" }, // to 8
+            { text: "Mâu thuẫn bên trong...", desc: "Cạnh tranh trong nội bộ tổ chức độc quyền" }, // to 7
+            { text: "Tổng hợp tình huống...", desc: "Nhận diện 3 quan hệ cạnh tranh" }, // to 8
             { text: "Bài thi sát hạch...", desc: "Kiểm tra tốc độ và độ chính xác" }, // to 9
             { text: "Hoàn thành Hành trình...", desc: "Vinh danh nhà thám hiểm" } // to 10
         ];
@@ -1790,12 +1753,12 @@
                 let shouldShowNext = isGoingBack ||
                     (stageId === 1 && tram1Completed) ||
                     (stageId === 2 && document.querySelectorAll('#t2-draggables .draggable-item').length === 0) ||
-                    (stageId === 3 && t3MatchedCount === 4) ||
-                    (stageId === 4 && t4MatchedCount === 5) ||
+                    (stageId === 3 && t3CompletedCount === 3) ||
+                    (stageId === 4 && t4CompletedCount === 3) ||
                     (stageId === 5 && (t5PosCount + t5NegCount === 5)) ||
                     (stageId === 6 && tram6Completed) ||
-                    (stageId === 7 && t7NodesClicked.size === 3) ||
-                    (stageId === 8 && t8UnlockedLeft && t8UnlockedRight) ||
+                    (stageId === 7 && t7CompletedCount === 3) ||
+                    (stageId === 8 && t8CompletedCount === 6) ||
                     (stageId === 9 && quizQuestions.length > 0 && currentQuizIndex >= quizQuestions.length);
 
                 if (shouldShowNext && stageId < 10) {
@@ -1858,101 +1821,92 @@
             }
         }
 
-        // --- STAGE 3: BẬC THANG ĐỘC QUYỀN (NEW) ---
+        // --- STAGE 3: ĐỘC QUYỀN VS NGOÀI ĐỘC QUYỀN ---
         let tram3Initialized = false;
         function initTram3() {
             if (tram3Initialized) return; tram3Initialized = true;
             const data = [
-                { id: "cartel", title: "Thỏa thuận giá, độc lập sản xuất", color: "text-cyan-400", border: "border-cyan-500", bg: "bg-cyan-900/50" },
-                { id: "syndicate", title: "Thống nhất mua bán, độc lập SX", color: "text-green-400", border: "border-green-500", bg: "bg-green-900/50" },
-                { id: "trust", title: "Thống nhất toàn bộ SX & Tiêu thụ", color: "text-orange-400", border: "border-orange-500", bg: "bg-orange-900/50" },
-                { id: "consortium", title: "Liên kết dọc đa ngành khổng lồ", color: "text-red-400", border: "border-red-500", bg: "bg-red-900/50" }
+                { ok: true, icon: "fa-seedling", title: "Tìm thị trường ngách", desc: "Tránh đối đầu trực diện với hàng rào độc quyền." },
+                { ok: true, icon: "fa-handshake", title: "Liên kết với doanh nghiệp nhỏ khác", desc: "Tăng sức thương lượng trước sức ép của tổ chức độc quyền." },
+                { ok: true, icon: "fa-lightbulb", title: "Đổi mới sản phẩm", desc: "Tạo khác biệt để không bị khóa chặt bởi giá độc quyền." },
+                { ok: false, icon: "fa-door-closed", title: "Phụ thuộc hoàn toàn vào nguồn cung độc quyền", desc: "Dễ bị ép giá và mất quyền tự chủ." },
+                { ok: false, icon: "fa-arrow-trend-down", title: "Bán phá giá kéo dài", desc: "Doanh nghiệp nhỏ thường không đủ lực để chịu lỗ lâu dài." }
             ].sort(() => Math.random() - 0.5);
 
-            const container = document.getElementById('t3-draggables');
+            const container = document.getElementById('t3-actions'); container.innerHTML = '';
             data.forEach(item => {
-                let el = document.createElement('div'); el.className = `drag-ghost touch-none cursor-grab w-full p-3 rounded-lg flex items-center justify-center bg-slate-900 border border-slate-500 shadow-lg relative z-50 text-xs font-bold text-white text-center hover:border-amber-400`; el.dataset.id = item.id;
-                el.innerText = item.title; container.appendChild(el);
-
-                let isDragging = false; let startX, startY, currentX, currentY, clone = null;
-                el.addEventListener('pointerdown', (e) => {
-                    isDragging = true; el.setPointerCapture(e.pointerId); el.classList.add('opacity-50');
-                    let rect = el.getBoundingClientRect(); clone = el.cloneNode(true); clone.className = `fixed z-[200] p-3 rounded-lg flex items-center justify-center bg-slate-800 border-2 border-amber-400 shadow-[0_0_30px_rgba(251,191,36,0.3)] text-xs font-bold text-white text-center opacity-90`; clone.style.width = rect.width + 'px'; clone.style.left = rect.left + 'px'; clone.style.top = rect.top + 'px'; clone.style.margin = '0'; document.body.appendChild(clone);
-                    startX = e.clientX; startY = e.clientY; currentX = rect.left; currentY = rect.top; playPop();
-                });
-                el.addEventListener('pointermove', (e) => { if (!isDragging || !clone) return; clone.style.left = (currentX + (e.clientX - startX)) + 'px'; clone.style.top = (currentY + (e.clientY - startY)) + 'px'; });
-                el.addEventListener('pointerup', (e) => {
-                    if (!isDragging) return; isDragging = false; el.releasePointerCapture(e.pointerId); el.classList.remove('opacity-50');
-                    if (clone) {
-                        let cx = clone.getBoundingClientRect().left + clone.getBoundingClientRect().width / 2; let cy = clone.getBoundingClientRect().top + clone.getBoundingClientRect().height / 2;
-                        document.querySelectorAll('.t3-drop-slot').forEach(slot => {
-                            if (slot.classList.contains('matched')) return;
-                            let aRect = slot.getBoundingClientRect();
-                            if (cx > aRect.left && cx < aRect.right && cy > aRect.top && cy < aRect.bottom) {
-                                if (slot.dataset.target === el.dataset.id) {
-                                    slot.classList.add('matched', item.bg, item.border); slot.classList.remove('border-dashed', 'border-slate-600', 'bg-slate-900');
-                                    slot.innerHTML = `<span class="${item.color} font-bold text-sm text-center w-full">${item.title}</span>`;
-                                    el.remove(); t3MatchedCount++; playSuccess();
-                                    if (t3MatchedCount === 4) setTimeout(() => showMasterBtn(), 800);
-                                } else { slot.classList.add('animate-shake'); playAlert(); setTimeout(() => slot.classList.remove('animate-shake'), 400); }
-                            }
-                        });
-                        clone.remove(); clone = null;
+                let btn = document.createElement('button');
+                btn.className = 'w-full p-3 rounded-lg bg-slate-900 border border-slate-600 text-left hover:border-purple-400 transition-all';
+                btn.innerHTML = `<div class="flex gap-3 items-start"><i class="fa-solid ${item.icon} text-purple-300 mt-1"></i><div><div class="text-white font-bold text-sm">${item.title}</div><div class="text-xs text-slate-400 mt-1">${item.desc}</div></div></div>`;
+                btn.onclick = () => {
+                    if (btn.classList.contains('answered')) return;
+                    btn.classList.add('answered');
+                    if (item.ok) {
+                        t3CompletedCount++;
+                        btn.classList.add('border-emerald-400', 'bg-emerald-900/40');
+                        playSuccess();
+                        const wall = document.getElementById('t3-market-wall');
+                        wall.style.opacity = `${Math.max(0.15, 1 - t3CompletedCount * 0.28)}`;
+                        wall.style.transform = `scaleY(${Math.max(0.25, 1 - t3CompletedCount * 0.2)})`;
+                        document.getElementById('t3-progress-text').innerText = `Đã chọn ${t3CompletedCount}/3 chiến lược đúng`;
+                        document.getElementById('t3-firm-icon').classList.add('scale-110');
+                        setTimeout(() => document.getElementById('t3-firm-icon').classList.remove('scale-110'), 250);
+                        if (t3CompletedCount === 3) {
+                            document.getElementById('t3-result').classList.remove('hidden');
+                            container.querySelectorAll('button').forEach(b => b.disabled = true);
+                            setTimeout(() => showMasterBtn(), 700);
+                        }
+                    } else {
+                        btn.classList.add('border-red-500', 'bg-red-900/40', 'animate-shake');
+                        playAlert();
+                        setTimeout(() => btn.classList.remove('animate-shake'), 400);
                     }
-                });
+                };
+                container.appendChild(btn);
             });
         }
 
-        // --- STAGE 4: 5 ĐẶC ĐIỂM (OLD TRAM 3) ---
+        // --- STAGE 4: CẠNH TRANH GIỮA CÁC TỔ CHỨC ĐỘC QUYỀN ---
         let tram4Initialized = false;
         function initTram4() {
             if (tram4Initialized) return; tram4Initialized = true;
-            const drags = [{ id: "1", icon: 'fa-industry', color: 'text-red-400', bg: 'bg-red-500', title: 'Sáp nhập NM' }, { id: "2", icon: 'fa-building-columns', color: 'text-green-400', bg: 'bg-green-500', title: 'Bank + Công' }, { id: "3", icon: 'fa-ship', color: 'text-blue-400', bg: 'bg-blue-500', title: 'Đưa vốn ra' }, { id: "4", icon: 'fa-globe', color: 'text-purple-400', bg: 'bg-purple-500', title: 'Chia thị trường' }, { id: "5", icon: 'fa-map', color: 'text-orange-400', bg: 'bg-orange-500', title: 'Chiếm lãnh thổ' }].sort(() => Math.random() - 0.5);
+            const data = [
+                { id: "price", icon: "fa-tags", title: "Chiến tranh giá", desc: "Dùng giá độc quyền cao/thấp để giành ưu thế.", color: "amber" },
+                { id: "tech", icon: "fa-microchip", title: "Đua kỹ thuật", desc: "Đổi mới công nghệ để hạ chi phí và tăng năng suất.", color: "cyan" },
+                { id: "market", icon: "fa-map-location-dot", title: "Giành thị trường", desc: "Tranh nguồn cung, khách hàng và khu vực tiêu thụ.", color: "emerald" },
+                { id: "fake", icon: "fa-hand-peace", title: "Không còn cạnh tranh", desc: "Sai: độc quyền không thủ tiêu cạnh tranh mà làm cạnh tranh gay gắt hơn.", color: "red" }
+            ].sort(() => Math.random() - 0.5);
 
-            const container = document.getElementById('t4-draggables'); container.innerHTML = '';
-            drags.forEach(item => {
-                let el = document.createElement('div'); el.className = `drag-ghost touch-none cursor-grab w-[72px] h-[72px] rounded-xl flex flex-col items-center justify-center bg-slate-900 border border-slate-600 shadow-lg relative z-50 transition-transform hover:scale-110`; el.dataset.id = item.id;
-                el.innerHTML = `<i class="fa-solid ${item.icon} text-2xl ${item.color} pointer-events-none mb-1"></i><span class="text-[0.55rem] text-slate-300 font-bold text-center leading-tight px-1 pointer-events-none uppercase">${item.title}</span>`;
-                container.appendChild(el);
-                let isDragging = false; let startX, startY, currentX, currentY, clone = null;
-                el.addEventListener('pointerdown', (e) => {
-                    isDragging = true; el.setPointerCapture(e.pointerId); el.classList.add('opacity-50', 'scale-90');
-                    let rect = el.getBoundingClientRect(); clone = el.cloneNode(true); clone.className = `fixed z-[200] w-[72px] h-[72px] rounded-xl flex flex-col items-center justify-center bg-slate-800 border-2 border-slate-400 shadow-[0_0_30px_rgba(255,255,255,0.2)] scale-110 opacity-90`; clone.style.left = rect.left + 'px'; clone.style.top = rect.top + 'px'; clone.style.margin = '0'; document.body.appendChild(clone);
-                    startX = e.clientX; startY = e.clientY; currentX = rect.left; currentY = rect.top; playPop();
-                });
-                el.addEventListener('pointermove', (e) => { if (!isDragging || !clone) return; clone.style.left = (currentX + (e.clientX - startX)) + 'px'; clone.style.top = (currentY + (e.clientY - startY)) + 'px'; });
-                el.addEventListener('pointerup', (e) => {
-                    if (!isDragging) return; isDragging = false; el.releasePointerCapture(e.pointerId); el.classList.remove('opacity-50', 'scale-90');
-                    if (clone) {
-                        let cx = clone.getBoundingClientRect().left + clone.getBoundingClientRect().width / 2; let cy = clone.getBoundingClientRect().top + clone.getBoundingClientRect().height / 2;
-                        document.querySelectorAll('.t4-drop-slot').forEach(slot => {
-                            if (slot.classList.contains('matched')) return;
-                            let aRect = slot.querySelector('.t4-drop-area').getBoundingClientRect();
-                            if (cx > aRect.left && cx < aRect.right && cy > aRect.top && cy < aRect.bottom) {
-                                if (slot.dataset.target === el.dataset.id) {
-                                    slot.classList.add('matched'); slot.classList.replace('border-slate-600', `border-${item.color.split('-')[1]}-500`);
-                                    let da = slot.querySelector('.t4-drop-area'); da.classList.remove('border-dashed', 'bg-slate-900/50'); da.classList.add(item.bg, 'border-transparent'); da.innerHTML = `<i class="fa-solid ${item.icon} text-xl text-white"></i>`;
-                                    slot.querySelector('p.italic').classList.add('hidden'); slot.querySelector('.t4-content').classList.remove('hidden'); slot.querySelector('.t4-content').classList.add('animate-float-reveal');
-                                    el.remove(); t4MatchedCount++; playSuccess(); document.getElementById('t4-bg').className = `absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[100px] z-0 pointer-events-none transition-colors duration-1000 bg-${item.color.split('-')[1]}-900/30`;
-                                    if (t4MatchedCount === 5) { document.getElementById('t4-instruction').classList.add('hidden'); setTimeout(() => showMasterBtn(), 1000); }
-                                } else { slot.classList.add('animate-shake'); playAlert(); setTimeout(() => slot.classList.remove('animate-shake'), 400); }
-                            }
-                        });
-                        clone.remove(); clone = null;
+            const container = document.getElementById('t4-rival-actions'); container.innerHTML = '';
+            data.forEach(item => {
+                const btn = document.createElement('button');
+                btn.className = 'w-full p-3 rounded-lg bg-slate-900 border border-slate-600 text-left hover:border-blue-400 transition-all';
+                btn.innerHTML = `<div class="flex gap-3 items-start"><i class="fa-solid ${item.icon} text-blue-300 mt-1"></i><div><div class="text-white font-bold text-sm">${item.title}</div><div class="text-xs text-slate-400 mt-1">${item.desc}</div></div></div>`;
+                btn.onclick = () => {
+                    if (btn.classList.contains('answered')) return;
+                    btn.classList.add('answered');
+                    if (item.id === 'fake') {
+                        btn.classList.add('border-red-500', 'bg-red-900/40', 'animate-shake');
+                        playAlert();
+                        setTimeout(() => btn.classList.remove('animate-shake'), 400);
+                        return;
                     }
-                });
+                    btn.classList.add('border-emerald-400', 'bg-emerald-900/40');
+                    const front = document.querySelector(`.t4-front[data-target="${item.id}"]`);
+                    front.classList.remove('border-dashed', 'border-slate-600');
+                    front.classList.add('border-emerald-400', 'bg-emerald-900/30');
+                    front.insertAdjacentHTML('beforeend', `<div class="mt-3 text-xs text-emerald-300 font-mono animate-float-reveal"><i class="fa-solid fa-check mr-1"></i>Đã nhận diện</div>`);
+                    t4CompletedCount++;
+                    document.getElementById('t4-bg').className = 'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[100px] z-0 pointer-events-none transition-colors duration-1000 bg-blue-900/30';
+                    playSuccess();
+                    if (t4CompletedCount === 3) {
+                        document.getElementById('t4-instruction').classList.add('hidden');
+                        container.querySelectorAll('button').forEach(b => b.disabled = true);
+                        setTimeout(() => showMasterBtn(), 800);
+                    }
+                };
+                container.appendChild(btn);
             });
-
-            // Render Drop Slots
-            const slotsContainer = document.getElementById('t4-slots-container');
-            if (slotsContainer.innerHTML === "") {
-                const slotsHtml = [
-                    { t: 1, n: "1. Tập trung Sản xuất", d: "Hình thành Cartel, Syndicate, Trust." }, { t: 2, n: "2. Tư bản tài chính", d: "Dung hợp Tư bản Ngân hàng và Công nghiệp." },
-                    { t: 3, n: "3. Xuất khẩu tư bản", d: "Mang Vốn ra nước ngoài thay vì bán hàng hóa." }, { t: 4, n: "4. Chia thị trường", d: "Các liên minh quốc tế thỏa hiệp phân chia phạm vi." },
-                    { t: 5, n: "5. Phân chia lãnh thổ", d: "Dùng vũ lực xâm chiếm nước yếu, gây chiến tranh.", c: "md:col-span-2" }
-                ].map(s => `<div class="t4-drop-slot glass-card p-3 border-2 border-dashed border-slate-600 rounded-xl flex items-center gap-3 transition-all ${s.c || ''}" data-target="${s.t}"><div class="t4-drop-area w-12 h-12 rounded-lg bg-slate-900/50 flex items-center justify-center border-2 border-dashed border-slate-500 shrink-0 transition-colors"></div><div><h3 class="font-bold text-white text-sm">${s.n}</h3><p class="text-xs text-slate-500 italic mt-0.5">Chờ mảnh ghép...</p><div class="t4-content hidden text-xs text-slate-300 mt-1">${s.d}</div></div></div>`).join('');
-                slotsContainer.innerHTML = slotsHtml;
-            }
         }
 
         // --- STAGE 5: CÁN CÂN ĐỘC QUYỀN (NEW) ---
@@ -2037,52 +1991,84 @@
             if (val === 100 && !tram6Completed) { tram6Completed = true; document.getElementById('t6-instruction').style.display = 'none'; playSuccess(); showMasterBtn(); }
         });
 
-        // --- STAGE 7: ĐỘC QUYỀN 4.0 MAP (NEW) ---
+        // --- STAGE 7: CẠNH TRANH TRONG NỘI BỘ TỔ CHỨC ĐỘC QUYỀN ---
+        let tram7Initialized = false;
         function initTram7() {
-            // Setup clicks in HTML via global function
-        }
-        window.openT7Modal = function (id) {
-            playPop(); t7NodesClicked.add(id);
-            const m = document.getElementById('t7-modal'); const t = document.getElementById('t7-modal-title'); const d = document.getElementById('t7-modal-desc'); const i = document.getElementById('t7-modal-icon');
-            if (id === 1) { t.innerText = "Tổ chức Độc quyền Đa quốc gia"; d.innerHTML = "Sự bành trướng của <strong>Công ty xuyên quốc gia (TNCs)</strong>. Xuất hiện các <strong>Concern</strong> (đa ngành ở nhiều nước) và <strong>Conglomerate</strong> (kết hợp các hãng không liên quan để đầu cơ chứng khoán)."; i.className = "fa-solid fa-building text-5xl mb-4 text-amber-400 glow-gold"; }
-            else if (id === 2) { t.innerText = "Xuất khẩu tư bản thế hệ mới"; d.innerHTML = "Luồng tư bản (FDI) ngày nay chủ yếu chảy <strong>giữa các nước phát triển với nhau</strong> để tìm kiếm công nghệ cao, thay vì chỉ dồn về các nước kém phát triển. Sự xuất hiện của các hình thức mới như BOT, BT."; i.className = "fa-solid fa-money-bill-transfer text-5xl mb-4 text-cyan-400 glow-blue"; }
-            else if (id === 3) { t.innerText = "Phân chia lại thị trường"; d.innerHTML = "Thế giới không phân chia bằng chiến tranh vũ trang mà bằng <strong>Liên minh kinh tế khu vực</strong> (EU, NAFTA, ASEAN) và các hiệp định thương mại tự do (FTA)."; i.className = "fa-solid fa-globe text-5xl mb-4 text-emerald-400 drop-shadow-[0_0_10px_rgba(16,185,129,0.8)]"; }
-            m.classList.remove('hidden');
-            if (t7NodesClicked.size === 3) setTimeout(() => { document.getElementById('t7-instruction').classList.add('hidden'); showMasterBtn(); }, 1000);
-        }
-
-        window.closeT7Modal = function () {
-            document.getElementById('t7-modal').classList.add('hidden');
-            playPop();
-        }
-
-        // --- STAGE 8: THƯỚC ĐO LỊCH SỬ ---
-        function initTram8() {
-            const slider = document.getElementById('t8-slider');
-            const positiveLayer = document.getElementById('t8-pos-layer');
-            const instruction = document.getElementById('t8-instruction');
-
-            if (!slider || !positiveLayer || !instruction) return;
-
-            slider.oninput = (event) => {
-                const val = Number(event.target.value);
-                positiveLayer.style.clipPath = `polygon(0 0, ${val}% 0, ${val}% 100%, 0 100%)`;
-
-                if (val <= 5 && !t8UnlockedRight) {
-                    t8UnlockedRight = true;
-                    playPop();
-                }
-                if (val >= 95 && !t8UnlockedLeft) {
-                    t8UnlockedLeft = true;
-                    playPop();
-                }
-
-                if (t8UnlockedLeft && t8UnlockedRight && instruction.style.display !== 'none') {
-                    instruction.style.display = 'none';
+            if (tram7Initialized) return; tram7Initialized = true;
+            const data = [
+                { icon: "fa-chart-simple", title: "Tranh hạn ngạch sản xuất", desc: "Mỗi thành viên muốn được sản xuất/bán nhiều hơn phần đã thỏa thuận." },
+                { icon: "fa-sack-dollar", title: "Tranh tỷ lệ lợi nhuận", desc: "Các thành viên muốn phần lợi nhuận phân chia có lợi hơn cho mình." },
+                { icon: "fa-gavel", title: "Tranh quyền chi phối", desc: "Doanh nghiệp mạnh tìm cách áp đặt quyết định chung lên các thành viên yếu hơn." }
+            ];
+            const container = document.getElementById('t7-conflicts'); container.innerHTML = '';
+            data.forEach(item => {
+                const card = document.createElement('button');
+                card.className = 'glass-card p-5 border border-slate-600 rounded-xl text-left hover:border-blue-400 transition-all';
+                card.innerHTML = `<i class="fa-solid ${item.icon} text-3xl text-blue-400 mb-4"></i><h3 class="text-white font-bold mb-2">${item.title}</h3><p class="text-xs text-slate-400 leading-relaxed">${item.desc}</p><div class="mt-4 text-xs text-blue-300 font-mono">Bấm để xử lý mâu thuẫn</div>`;
+                card.onclick = () => {
+                    if (card.classList.contains('answered')) return;
+                    card.classList.add('answered', 'border-emerald-400', 'bg-emerald-900/30');
+                    card.querySelector('.font-mono').innerHTML = '<i class="fa-solid fa-check mr-1"></i>Đã nhận diện mâu thuẫn';
+                    t7CompletedCount++;
                     playSuccess();
-                    showMasterBtn("Làm Bài Quiz Sát Hạch");
+                    if (t7CompletedCount === 3) {
+                        document.getElementById('t7-instruction').classList.add('hidden');
+                        setTimeout(() => showMasterBtn(), 800);
+                    }
+                };
+                container.appendChild(card);
+            });
+        }
+
+        // --- STAGE 8: TỔNG HỢP QUAN HỆ CẠNH TRANH ---
+        let tram8Initialized = false;
+        const t8Scenarios = [
+            { type: "outside", text: "Một doanh nghiệp nhỏ muốn gia nhập ngành nhưng bị tập đoàn lớn kiểm soát nguồn nguyên liệu và kênh phân phối." },
+            { type: "between", text: "Hai khối độc quyền cùng ngành hạ giá, tăng quảng cáo và tranh hợp đồng cung ứng lớn." },
+            { type: "inside", text: "Các thành viên trong cùng liên minh tranh nhau hạn ngạch sản xuất vì ai cũng muốn bán nhiều hơn." },
+            { type: "outside", text: "Một hãng ngoài độc quyền tìm thị trường ngách để thoát khỏi sức ép giá của tổ chức độc quyền." },
+            { type: "between", text: "Các tập đoàn lớn chạy đua đổi mới kỹ thuật để giảm chi phí và giành thị phần." },
+            { type: "inside", text: "Một thành viên mạnh trong liên minh ép các thành viên khác chấp nhận tỷ lệ phân chia lợi nhuận bất lợi." }
+        ];
+        function initTram8() {
+            if (tram8Initialized) return; tram8Initialized = true;
+            document.getElementById('t8-total').innerText = t8Scenarios.length;
+            document.querySelectorAll('.t8-choice').forEach(btn => {
+                btn.onclick = () => {
+                    const current = t8Scenarios[t8CurrentIndex];
+                    const feedback = document.getElementById('t8-feedback');
+                    if (btn.dataset.type === current.type) {
+                        t8CompletedCount++;
+                        t8CurrentIndex++;
+                        feedback.className = 'mt-4 text-center font-mono text-sm min-h-[24px] text-emerald-400';
+                        feedback.innerHTML = '<i class="fa-solid fa-check mr-1"></i>Chính xác!';
+                        playSuccess();
+                        if (t8CurrentIndex >= t8Scenarios.length) {
+                            document.getElementById('t8-scenario-text').innerText = 'Bạn đã phân loại đúng toàn bộ 3 quan hệ cạnh tranh trong trạng thái độc quyền.';
+                            document.getElementById('t8-current').innerText = t8Scenarios.length;
+                            document.getElementById('t8-instruction').style.display = 'none';
+                            document.querySelectorAll('.t8-choice').forEach(choice => choice.disabled = true);
+                            setTimeout(() => showMasterBtn("Làm Bài Quiz Sát Hạch"), 800);
+                        } else {
+                            renderT8Scenario();
+                        }
+                    } else {
+                        feedback.className = 'mt-4 text-center font-mono text-sm min-h-[24px] text-red-400';
+                        feedback.innerHTML = '<i class="fa-solid fa-xmark mr-1"></i>Chưa đúng, đọc kỹ chủ thể đang cạnh tranh rồi chọn lại.';
+                        btn.classList.add('animate-shake');
+                        playAlert();
+                        setTimeout(() => btn.classList.remove('animate-shake'), 400);
+                    }
                 }
-            };
+            });
+            renderT8Scenario();
+        }
+
+        function renderT8Scenario() {
+            const current = t8Scenarios[t8CurrentIndex];
+            document.getElementById('t8-current').innerText = t8CurrentIndex + 1;
+            document.getElementById('t8-scenario-text').innerText = current.text;
+            document.getElementById('t8-feedback').innerHTML = '';
         }
 
         // --- STAGE 9: QUIZ (OLD TRAM 5) ---
