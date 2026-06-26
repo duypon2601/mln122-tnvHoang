@@ -1107,37 +1107,53 @@
             <div class="min-h-full flex flex-col items-center justify-center pt-24 px-4 md:px-16 w-full">
                 <div class="text-center mb-8 content-reveal z-20">
                     <div class="stage-kicker text-blue-400">Trạm 7</div>
-                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Nội bộ tổ chức độc quyền</h2>
-                    <p class="text-slate-300 text-sm max-w-2xl mx-auto">Ngay trong một tổ chức độc quyền, các thành viên
-                        vẫn có thể tranh phần lợi ích: hạn ngạch, lợi nhuận, nguồn cung và quyền chi phối quyết định.</p>
+                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Bàn đàm phán nội bộ</h2>
+                    <p class="text-slate-300 text-sm max-w-2xl mx-auto">Trong cùng một tổ chức độc quyền, các thành viên
+                        vẫn tranh nhau phần bánh lợi ích. Hãy đóng vai ban điều phối để nhận diện và xử lý từng mâu thuẫn.</p>
                     <div id="t7-instruction"
                         class="mt-4 inline-block bg-blue-900/40 text-blue-300 border border-blue-500/50 px-4 py-2 rounded-full text-xs font-mono animate-pulse font-bold">
-                        <i class="fa-solid fa-hand-pointer mr-2"></i>Giải quyết 3 mâu thuẫn nội bộ
+                        <i class="fa-solid fa-hand-pointer mr-2"></i>Chọn phương án đúng qua 3 vòng đàm phán
                     </div>
                 </div>
 
                 <div
-                    class="content-reveal delay-200 relative w-full max-w-4xl min-h-[420px] bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 shadow-inner p-6">
-                    <div class="grid md:grid-cols-3 gap-4 mb-6">
-                        <div class="glass-card p-4 text-center border border-cyan-500/30">
+                    class="content-reveal delay-200 relative w-full max-w-5xl min-h-[460px] bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 shadow-inner p-6">
+                    <div class="grid md:grid-cols-[1fr_1.2fr_1fr] gap-4 mb-6 items-stretch">
+                        <div class="glass-card p-4 text-center border border-cyan-500/30 flex flex-col justify-center">
                             <i class="fa-solid fa-factory text-4xl text-cyan-400 mb-3"></i>
                             <h3 class="font-bold text-white">Thành viên A</h3>
-                            <p class="text-xs text-slate-400 mt-1">Muốn tăng hạn ngạch</p>
+                            <div class="mt-3 h-2 bg-slate-700 rounded-full overflow-hidden">
+                                <div id="t7-a-bar" class="h-full bg-cyan-400 transition-all duration-500" style="width: 55%"></div>
+                            </div>
+                            <p id="t7-a-note" class="text-xs text-slate-400 mt-2">Muốn phần sản xuất lớn hơn</p>
                         </div>
-                        <div class="glass-card p-4 text-center border border-amber-500/30">
+                        <div class="glass-card p-5 text-center border border-blue-500/30 relative overflow-hidden">
+                            <i class="fa-solid fa-handshake-angle text-5xl text-blue-400 mb-3 glow-blue"></i>
+                            <div class="text-xs text-blue-300 font-mono mb-2">Vòng <span id="t7-round">1</span>/3</div>
+                            <h3 id="t7-conflict-title" class="text-xl font-bold text-white mb-2">Đang mở cuộc họp...</h3>
+                            <p id="t7-conflict-desc" class="text-sm text-slate-300 leading-relaxed min-h-[44px]"></p>
+                            <div class="mt-4">
+                                <div class="flex justify-between text-[10px] text-slate-400 font-mono mb-1">
+                                    <span>Căng thẳng nội bộ</span><span id="t7-tension-label">100%</span>
+                                </div>
+                                <div class="h-3 bg-slate-900 rounded-full overflow-hidden border border-slate-600">
+                                    <div id="t7-tension-bar" class="h-full bg-red-500 transition-all duration-500" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="glass-card p-4 text-center border border-amber-500/30 flex flex-col justify-center">
                             <i class="fa-solid fa-warehouse text-4xl text-amber-400 mb-3"></i>
                             <h3 class="font-bold text-white">Thành viên B</h3>
-                            <p class="text-xs text-slate-400 mt-1">Muốn chia lợi nhuận cao hơn</p>
-                        </div>
-                        <div class="glass-card p-4 text-center border border-pink-500/30">
-                            <i class="fa-solid fa-chart-pie text-4xl text-pink-400 mb-3"></i>
-                            <h3 class="font-bold text-white">Ban điều phối</h3>
-                            <p class="text-xs text-slate-400 mt-1">Cố giữ thỏa thuận chung</p>
+                            <div class="mt-3 h-2 bg-slate-700 rounded-full overflow-hidden">
+                                <div id="t7-b-bar" class="h-full bg-amber-400 transition-all duration-500" style="width: 55%"></div>
+                            </div>
+                            <p id="t7-b-note" class="text-xs text-slate-400 mt-2">Muốn phần lợi nhuận cao hơn</p>
                         </div>
                     </div>
-                    <div id="t7-conflicts" class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    <div id="t7-choices" class="grid grid-cols-1 md:grid-cols-3 gap-3">
                         <!-- JS Injected -->
                     </div>
+                    <div id="t7-feedback" class="mt-5 min-h-[52px] text-center text-sm font-mono"></div>
                 </div>
             </div>
         </section>
@@ -1993,31 +2009,123 @@
 
         // --- STAGE 7: CẠNH TRANH TRONG NỘI BỘ TỔ CHỨC ĐỘC QUYỀN ---
         let tram7Initialized = false;
+        let t7CurrentRound = 0;
+        const t7Rounds = [
+            {
+                title: "Ai được sản xuất nhiều hơn?",
+                desc: "Thành viên A đòi tăng sản lượng vì nhà máy lớn hơn, B phản đối vì sợ mất phần thị trường.",
+                a: 75,
+                b: 45,
+                aNote: "Đòi tăng hạn ngạch",
+                bNote: "Sợ bị mất thị phần",
+                answer: "quota",
+                explain: "Đúng: đây là cạnh tranh về hạn ngạch sản xuất/tiêu thụ trong nội bộ tổ chức độc quyền.",
+                choices: [
+                    { id: "quota", icon: "fa-chart-simple", title: "Chia lại hạn ngạch", desc: "Nhận diện mâu thuẫn về phần được sản xuất/bán." },
+                    { id: "outside", icon: "fa-store", title: "Doanh nghiệp nhỏ chen vào", desc: "Đây là cạnh tranh với bên ngoài, không phải nội bộ." },
+                    { id: "state", icon: "fa-landmark", title: "Nhà nước tiếp quản", desc: "Không phải tình huống cạnh tranh nội bộ." }
+                ]
+            },
+            {
+                title: "Phần lợi nhuận chia thế nào?",
+                desc: "B cho rằng mình mang nhiều khách hàng hơn nên phải nhận tỷ lệ lợi nhuận cao hơn.",
+                a: 50,
+                b: 80,
+                aNote: "Muốn giữ tỷ lệ cũ",
+                bNote: "Đòi lợi nhuận cao hơn",
+                answer: "profit",
+                explain: "Đúng: các thành viên vẫn tranh nhau tỷ lệ phân chia lợi nhuận dù nằm trong cùng liên minh.",
+                choices: [
+                    { id: "pricewar", icon: "fa-tags", title: "Chiến tranh giá giữa các tập đoàn", desc: "Đây là cạnh tranh giữa các tổ chức độc quyền." },
+                    { id: "profit", icon: "fa-sack-dollar", title: "Thỏa thuận lại tỷ lệ lợi nhuận", desc: "Nhận diện mâu thuẫn về phần lợi ích được chia." },
+                    { id: "consumer", icon: "fa-users", title: "Người tiêu dùng mặc cả", desc: "Không phải chủ thể cạnh tranh trong nội bộ." }
+                ]
+            },
+            {
+                title: "Ai có tiếng nói quyết định?",
+                desc: "Một thành viên mạnh muốn áp đặt quyết định chung, các thành viên yếu hơn buộc phải nghe theo.",
+                a: 85,
+                b: 35,
+                aNote: "Muốn chi phối quyết định",
+                bNote: "Bị ép theo bên mạnh",
+                answer: "power",
+                explain: "Đúng: đây là cạnh tranh quyền chi phối trong nội bộ tổ chức độc quyền.",
+                choices: [
+                    { id: "power", icon: "fa-gavel", title: "Tranh quyền chi phối", desc: "Nhận diện bên mạnh áp đặt quyết định lên bên yếu." },
+                    { id: "tech", icon: "fa-microchip", title: "Đua công nghệ với đối thủ", desc: "Đây thường là cạnh tranh giữa các tổ chức độc quyền." },
+                    { id: "niche", icon: "fa-seedling", title: "Tìm thị trường ngách", desc: "Đây là cách doanh nghiệp ngoài độc quyền né sức ép." }
+                ]
+            }
+        ];
         function initTram7() {
             if (tram7Initialized) return; tram7Initialized = true;
-            const data = [
-                { icon: "fa-chart-simple", title: "Tranh hạn ngạch sản xuất", desc: "Mỗi thành viên muốn được sản xuất/bán nhiều hơn phần đã thỏa thuận." },
-                { icon: "fa-sack-dollar", title: "Tranh tỷ lệ lợi nhuận", desc: "Các thành viên muốn phần lợi nhuận phân chia có lợi hơn cho mình." },
-                { icon: "fa-gavel", title: "Tranh quyền chi phối", desc: "Doanh nghiệp mạnh tìm cách áp đặt quyết định chung lên các thành viên yếu hơn." }
-            ];
-            const container = document.getElementById('t7-conflicts'); container.innerHTML = '';
-            data.forEach(item => {
+            renderT7Round();
+        }
+
+        function renderT7Round() {
+            const round = t7Rounds[t7CurrentRound];
+            document.getElementById('t7-round').innerText = t7CurrentRound + 1;
+            document.getElementById('t7-conflict-title').innerText = round.title;
+            document.getElementById('t7-conflict-desc').innerText = round.desc;
+            document.getElementById('t7-a-bar').style.width = `${round.a}%`;
+            document.getElementById('t7-b-bar').style.width = `${round.b}%`;
+            document.getElementById('t7-a-note').innerText = round.aNote;
+            document.getElementById('t7-b-note').innerText = round.bNote;
+            document.getElementById('t7-feedback').innerHTML = '';
+
+            const tension = Math.max(0, 100 - (t7CompletedCount * 34));
+            document.getElementById('t7-tension-label').innerText = `${tension}%`;
+            document.getElementById('t7-tension-bar').style.width = `${tension}%`;
+            document.getElementById('t7-tension-bar').className = `h-full transition-all duration-500 ${tension > 60 ? 'bg-red-500' : tension > 25 ? 'bg-amber-400' : 'bg-emerald-400'}`;
+
+            const container = document.getElementById('t7-choices'); container.innerHTML = '';
+            round.choices.forEach(choice => {
                 const card = document.createElement('button');
-                card.className = 'glass-card p-5 border border-slate-600 rounded-xl text-left hover:border-blue-400 transition-all';
-                card.innerHTML = `<i class="fa-solid ${item.icon} text-3xl text-blue-400 mb-4"></i><h3 class="text-white font-bold mb-2">${item.title}</h3><p class="text-xs text-slate-400 leading-relaxed">${item.desc}</p><div class="mt-4 text-xs text-blue-300 font-mono">Bấm để xử lý mâu thuẫn</div>`;
-                card.onclick = () => {
-                    if (card.classList.contains('answered')) return;
-                    card.classList.add('answered', 'border-emerald-400', 'bg-emerald-900/30');
-                    card.querySelector('.font-mono').innerHTML = '<i class="fa-solid fa-check mr-1"></i>Đã nhận diện mâu thuẫn';
-                    t7CompletedCount++;
-                    playSuccess();
-                    if (t7CompletedCount === 3) {
-                        document.getElementById('t7-instruction').classList.add('hidden');
-                        setTimeout(() => showMasterBtn(), 800);
-                    }
-                };
+                card.className = 'glass-card p-4 border border-slate-600 rounded-xl text-left hover:border-blue-400 transition-all';
+                card.innerHTML = `<i class="fa-solid ${choice.icon} text-2xl text-blue-400 mb-3"></i><h3 class="text-white font-bold mb-2">${choice.title}</h3><p class="text-xs text-slate-400 leading-relaxed">${choice.desc}</p>`;
+                card.onclick = () => handleT7Choice(choice.id, card);
                 container.appendChild(card);
             });
+        }
+
+        function handleT7Choice(choiceId, card) {
+            const round = t7Rounds[t7CurrentRound];
+            const feedback = document.getElementById('t7-feedback');
+            if (choiceId !== round.answer) {
+                card.classList.add('animate-shake', 'border-red-500', 'bg-red-900/30');
+                feedback.className = 'mt-5 min-h-[52px] text-center text-sm font-mono text-red-400';
+                feedback.innerHTML = '<i class="fa-solid fa-circle-xmark mr-1"></i>Chưa đúng: hãy nhìn xem mâu thuẫn đang xảy ra giữa các thành viên trong cùng liên minh.';
+                playAlert();
+                setTimeout(() => card.classList.remove('animate-shake'), 400);
+                return;
+            }
+
+            card.classList.add('border-emerald-400', 'bg-emerald-900/30');
+            document.querySelectorAll('#t7-choices button').forEach(btn => btn.disabled = true);
+            t7CompletedCount++;
+            feedback.className = 'mt-5 min-h-[52px] text-center text-sm font-mono text-emerald-400';
+            feedback.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i>${round.explain}`;
+            playSuccess();
+
+            const tension = Math.max(0, 100 - (t7CompletedCount * 34));
+            document.getElementById('t7-tension-label').innerText = `${tension}%`;
+            document.getElementById('t7-tension-bar').style.width = `${tension}%`;
+            document.getElementById('t7-tension-bar').className = `h-full transition-all duration-500 ${tension > 60 ? 'bg-red-500' : tension > 25 ? 'bg-amber-400' : 'bg-emerald-400'}`;
+
+            setTimeout(() => {
+                t7CurrentRound++;
+                if (t7CurrentRound < t7Rounds.length) {
+                    renderT7Round();
+                } else {
+                    document.getElementById('t7-conflict-title').innerText = 'Đàm phán hoàn tất!';
+                    document.getElementById('t7-conflict-desc').innerText = 'Bạn đã nhận diện đủ 3 dạng cạnh tranh trong nội bộ tổ chức độc quyền: hạn ngạch, lợi nhuận và quyền chi phối.';
+                    document.getElementById('t7-instruction').classList.add('hidden');
+                    document.getElementById('t7-choices').innerHTML = '';
+                    feedback.className = 'mt-5 min-h-[52px] text-center text-sm font-mono text-emerald-400';
+                    feedback.innerHTML = '<i class="fa-solid fa-trophy mr-1"></i>Nội bộ đã tạm hạ nhiệt. Chuyển sang trạm tổng hợp nào!';
+                    setTimeout(() => showMasterBtn(), 700);
+                }
+            }, 950);
         }
 
         // --- STAGE 8: TỔNG HỢP QUAN HỆ CẠNH TRANH ---
