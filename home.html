@@ -527,8 +527,122 @@
         <p>© 2026 - Sản phẩm sáng tạo thực hiện bởi <strong>Nhóm 3</strong> - Lớp MLN122</p>
     </footer>
 
+    <!-- AI Chat Box Popup -->
+    <div id="ai-chat-container" class="fixed bottom-6 right-6 z-50 flex flex-col items-end pointer-events-none">
+        
+        <!-- Chat Box -->
+        <div id="ai-chat-box" class="bg-white/90 backdrop-blur-xl border border-indigo-100 rounded-2xl shadow-2xl w-80 sm:w-96 mb-4 overflow-hidden flex flex-col transition-all duration-300 transform translate-y-4 opacity-0 pointer-events-none max-h-[500px]" style="height: 0px;">
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-indigo-600 to-purple-600 p-4 text-white flex justify-between items-center rounded-t-2xl">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <span class="font-bold">Trợ lý AI</span>
+                </div>
+                <button id="close-chat-btn" class="text-white/80 hover:text-white focus:outline-none transition-colors">
+                    <i class="fas fa-times text-lg"></i>
+                </button>
+            </div>
+            
+            <!-- Body -->
+            <div id="ai-chat-body" class="flex-1 p-4 overflow-y-auto bg-slate-50/50 flex flex-col gap-4 h-64">
+                <!-- Bot Message -->
+                <div class="flex items-start gap-2 max-w-[85%]">
+                    <div class="w-8 h-8 rounded-full bg-indigo-100 flex-shrink-0 flex items-center justify-center text-indigo-600 text-sm">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="bg-white border border-slate-100 rounded-2xl rounded-tl-sm p-3 shadow-sm text-sm text-slate-700">
+                        Xin chào! Tôi là Trợ lý AI. Tôi có thể giúp gì cho bạn về chủ đề Cạnh tranh và Độc quyền?
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <div class="p-3 bg-white border-t border-slate-100 flex gap-2">
+                <input type="text" id="ai-chat-input" placeholder="Nhập câu hỏi..." class="flex-1 bg-slate-100 border-none rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-shadow">
+                <button id="send-chat-btn" class="w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center hover:bg-indigo-700 transition-colors focus:outline-none shrink-0">
+                    <i class="fas fa-paper-plane text-sm"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Toggle Button -->
+        <button id="ai-chat-toggle" class="w-14 h-14 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg flex items-center justify-center hover:scale-110 transition-transform duration-300 focus:outline-none pointer-events-auto">
+            <i class="fas fa-comment-dots text-2xl"></i>
+        </button>
+    </div>
+
     <!-- Scripts -->
     <script>
+        // AI Chat Box Logic
+        const chatToggle = document.getElementById('ai-chat-toggle');
+        const chatBox = document.getElementById('ai-chat-box');
+        const closeChatBtn = document.getElementById('close-chat-btn');
+        const chatInput = document.getElementById('ai-chat-input');
+        const sendChatBtn = document.getElementById('send-chat-btn');
+        const chatBody = document.getElementById('ai-chat-body');
+
+        let isChatOpen = false;
+
+        function toggleChat() {
+            isChatOpen = !isChatOpen;
+            if (isChatOpen) {
+                chatBox.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+                chatBox.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                chatBox.style.height = '400px';
+                chatInput.focus();
+            } else {
+                chatBox.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+                chatBox.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                chatBox.style.height = '0px';
+            }
+        }
+
+        chatToggle.addEventListener('click', toggleChat);
+        closeChatBtn.addEventListener('click', toggleChat);
+
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+
+            // User Message
+            const userMsgHtml = `
+                <div class="flex items-start gap-2 max-w-[85%] self-end flex-row-reverse">
+                    <div class="w-8 h-8 rounded-full bg-slate-200 flex-shrink-0 flex items-center justify-center text-slate-600 text-sm">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="bg-indigo-600 text-white rounded-2xl rounded-tr-sm p-3 shadow-sm text-sm break-words">
+                        ${message.replace(/</g, "&lt;").replace(/>/g, "&gt;")}
+                    </div>
+                </div>
+            `;
+            chatBody.insertAdjacentHTML('beforeend', userMsgHtml);
+            chatInput.value = '';
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            // Simulate Bot Response
+            setTimeout(() => {
+                const botMsgHtml = `
+                    <div class="flex items-start gap-2 max-w-[85%]">
+                        <div class="w-8 h-8 rounded-full bg-indigo-100 flex-shrink-0 flex items-center justify-center text-indigo-600 text-sm">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="bg-white border border-slate-100 rounded-2xl rounded-tl-sm p-3 shadow-sm text-sm text-slate-700">
+                            Tính năng trả lời tự động bằng AI đang được phát triển. Vui lòng quay lại sau!
+                        </div>
+                    </div>
+                `;
+                chatBody.insertAdjacentHTML('beforeend', botMsgHtml);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }, 1000);
+        }
+
+        sendChatBtn.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+
         // Hiệu ứng Navbar mờ/đổi màu khi cuộn trang
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
