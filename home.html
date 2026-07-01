@@ -3,32 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>4.1 Cạnh Tranh Độc Quyền | Nhóm 3</title>
+    <title>4.1 Cạnh tranh độc quyền | Nhóm 3</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Nunito+Sans:wght@300;400;600;700;800&display=swap');
-        
+
         body {
             font-family: 'Nunito Sans', sans-serif;
-            background-color: #f8fafc;
+            background: #f8fafc;
         }
-        
+
         h1, h2, h3, h4, .font-serif {
             font-family: 'Merriweather', serif;
         }
 
         .glass-card {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.96);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
         }
 
         .fade-in-up {
-            animation: fadeInUp 0.8s ease-out forwards;
+            animation: fadeInUp 0.75s ease-out forwards;
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(18px);
         }
 
         @keyframes fadeInUp {
@@ -39,195 +39,199 @@
         }
     </style>
 </head>
-<body class="text-slate-800 antialiased selection:bg-indigo-200 selection:text-indigo-900">
+<body class="text-slate-800 antialiased selection:bg-amber-200 selection:text-slate-900">
 
-    <!-- Navigation Bar -->
     <nav class="fixed w-full z-50 transition-all duration-300 bg-transparent" id="navbar">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <div class="flex items-center gap-2 cursor-pointer group" onclick="window.scrollTo(0,0)">
-                    <div class="w-8 h-8 bg-amber-400 rounded-lg flex items-center justify-center transform group-hover:rotate-12 transition">
+                <button class="flex items-center gap-2 group" onclick="window.scrollTo(0,0)" aria-label="Về đầu trang">
+                    <span class="w-9 h-9 bg-amber-400 rounded-lg flex items-center justify-center transform group-hover:rotate-6 transition">
                         <i class="fas fa-book-open text-slate-900"></i>
-                    </div>
-                    <span class="font-bold text-lg text-white font-serif hidden sm:block drop-shadow-md">Khám Phá Kinh Tế</span>
-                </div>
-                <div class="flex space-x-1 sm:space-x-6 text-sm sm:text-base font-semibold items-center">
-                    <a href="#phan-1" class="text-slate-200 hover:text-amber-400 drop-shadow transition hidden md:block">Nguyên nhân</a>
-                    <a href="#phan-2" class="text-slate-200 hover:text-amber-400 drop-shadow transition hidden md:block">Độc quyền NN</a>
-                    <a href="#phan-3" class="text-slate-200 hover:text-amber-400 drop-shadow transition hidden md:block">Tác động</a>
-                    <a href="#thu-thach" class="bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-900 px-4 py-2 rounded-full shadow-lg shadow-amber-500/30 transform hover:-translate-y-0.5 transition flex items-center gap-2">
-                        <i class="fas fa-gamepad"></i><span class="hidden sm:inline">Chơi Game</span>
+                    </span>
+                    <span class="font-bold text-lg text-white font-serif hidden sm:block drop-shadow-md">Nhóm 3 - MLN122</span>
+                </button>
+                <div class="flex space-x-2 sm:space-x-5 text-sm sm:text-base font-semibold items-center">
+                    <a href="#phan-a" class="text-slate-200 hover:text-amber-300 drop-shadow transition hidden md:block">Nguyên nhân</a>
+                    <a href="#phan-b" class="text-slate-200 hover:text-amber-300 drop-shadow transition hidden md:block">Tác động</a>
+                    <a href="#phan-c" class="text-slate-200 hover:text-amber-300 drop-shadow transition hidden md:block">Quan hệ</a>
+                    <a href="#phan-a" class="bg-amber-400 hover:bg-amber-300 text-slate-900 px-4 py-2 rounded-full shadow-lg shadow-amber-500/25 transition flex items-center gap-2">
+                        <i class="fas fa-arrow-down"></i><span class="hidden sm:inline">Xem nội dung</span>
                     </a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="relative bg-slate-900 text-white pt-24 pb-32 px-4 overflow-hidden">
-        <div class="absolute inset-0 opacity-20">
-            <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="" class="w-full h-full object-cover">
+    <header class="relative bg-slate-950 text-white pt-24 pb-28 px-4 overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="assets/pdf/doc-quyen-lien-minh.png" alt="Minh họa độc quyền - sự liên minh giữa các doanh nghiệp lớn" class="w-full h-full object-cover opacity-30">
+            <div class="absolute inset-0 bg-gradient-to-b from-slate-950/65 via-slate-950/85 to-slate-950"></div>
         </div>
-        <div class="absolute inset-0 bg-gradient-to-b from-slate-900/50 to-slate-900"></div>
-        <div class="relative max-w-4xl mx-auto text-center z-10 fade-in-up">
-            <span class="inline-block py-1 px-3 rounded-full bg-indigo-500/30 text-indigo-200 text-sm font-bold tracking-wider mb-4 border border-indigo-500/50">CHƯƠNG 4 - NHÓM 3</span>
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">Cạnh tranh độc quyền <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-amber-400">trong nền kinh tế thị trường</span></h1>
-            <p class="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto">Nghiên cứu nguyên nhân hình thành, bản chất và tác động của độc quyền và độc quyền nhà nước theo lý luận của C. Mác và V.I. Lênin.</p>
+        <div class="relative max-w-5xl mx-auto z-10 fade-in-up">
+            <span class="inline-flex items-center gap-2 py-1 px-3 rounded-full bg-amber-400/15 text-amber-200 text-sm font-bold tracking-wider mb-5 border border-amber-300/30">
+                <i class="fas fa-file-pdf"></i> NỘI DUNG TỪ FILE PDF
+            </span>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                4.1 Cạnh tranh độc quyền trong nền kinh tế thị trường
+            </h1>
+            <p class="text-lg md:text-xl text-slate-300 max-w-3xl leading-relaxed">
+                Độc quyền, độc quyền nhà nước, tác động của độc quyền và quan hệ cạnh tranh trong trạng thái độc quyền.
+            </p>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="max-w-4xl mx-auto px-4 -mt-16 relative z-20 pb-24">
+    <main class="max-w-5xl mx-auto px-4 -mt-14 relative z-20 pb-24">
 
-        <!-- Phần 1: Độc quyền & Nguyên nhân -->
-        <section id="phan-1" class="glass-card rounded-2xl p-6 md:p-10 mb-10 fade-in-up" style="animation-delay: 0.2s; scroll-margin-top: 5rem;">
-            <div class="flex items-center gap-3 mb-6">
-                <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-xl">1</div>
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-800">Độc quyền và Nguyên nhân hình thành</h2>
-            </div>
-
-            <!-- Định nghĩa Độc quyền có ảnh minh họa -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div class="bg-indigo-50 border-l-4 border-indigo-500 p-5 rounded-r-lg flex flex-col justify-center">
-                    <h3 class="font-bold text-lg text-indigo-900 mb-2"><i class="fas fa-chess-king mr-2"></i>Khái niệm Độc quyền</h3>
-                    <p class="text-slate-700 leading-relaxed">Độc quyền là sự liên minh giữa các doanh nghiệp lớn, có khả năng thâu tóm trong việc sản xuất và tiêu thụ một lượng hàng hóa, có khả năng định ra <strong>giá cả độc quyền</strong>, nhằm thu <strong>lợi nhuận độc quyền</strong>.</p>
-                </div>
-                <div class="rounded-xl overflow-hidden shadow-md h-48 md:h-auto group relative">
-                    <img src="https://images.unsplash.com/photo-1513828583688-c52646db42da?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    <div class="absolute inset-0 bg-indigo-900/10 group-hover:bg-transparent transition"></div>
+        <section id="phan-a" class="glass-card rounded-2xl p-6 md:p-10 mb-10 fade-in-up" style="animation-delay: 0.15s; scroll-margin-top: 5rem;">
+            <div class="flex items-start gap-4 mb-8">
+                <div class="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold text-xl shrink-0">A</div>
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-slate-900">Nguyên nhân hình thành độc quyền và độc quyền nhà nước</h2>
+                    <p class="text-slate-500 mt-2">Phần mở đầu của nội dung: khái niệm độc quyền, nguyên nhân hình thành và sự xuất hiện của độc quyền nhà nước.</p>
                 </div>
             </div>
 
-            <!-- Nguyên nhân hình thành -->
-            <h3 class="font-bold text-xl text-slate-800 mb-6 border-b pb-2">3 Nguyên nhân hình thành độc quyền:</h3>
-            
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-8">
+                <div class="lg:col-span-2 bg-indigo-50 border-l-4 border-indigo-500 p-5 rounded-r-xl">
+                    <h3 class="font-bold text-lg text-indigo-950 mb-3"><i class="fas fa-chess-king mr-2"></i>Độc quyền</h3>
+                    <p class="text-slate-700 leading-relaxed">
+                        Độc quyền là sự liên minh giữa các doanh nghiệp lớn, có khả năng thâu tóm trong việc sản xuất và tiêu thụ một lượng hàng hóa, có khả năng định ra giá cả độc quyền, nhằm thu lợi nhuận độc quyền.
+                    </p>
+                </div>
+                <figure class="lg:col-span-3 rounded-xl overflow-hidden shadow-md border border-slate-100 bg-white">
+                    <img src="assets/pdf/doc-quyen-lien-minh.png" alt="Độc quyền - sự liên minh giữa các doanh nghiệp lớn" class="w-full h-full object-cover">
+                </figure>
+            </div>
+
+            <h3 class="font-bold text-xl text-slate-900 mb-5 border-b border-slate-200 pb-3">Nguyên nhân hình thành độc quyền</h3>
             <div class="space-y-6">
-                <!-- Nguyên nhân 1 -->
-                <div class="flex flex-col md:flex-row gap-4 items-start">
-                    <div class="flex-shrink-0 w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center text-slate-500">
+                <article class="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-4">
+                    <div class="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center text-slate-500">
                         <i class="fas fa-industry text-xl"></i>
                     </div>
                     <div>
-                        <h4 class="font-bold text-lg text-slate-800 mb-1">Một là, do sự phát triển của lực lượng sản xuất</h4>
-                        <p class="text-slate-600">Yếu tố khoa học kỹ thuật phát triển tạo ra các xí nghiệp lớn. Cuối thế kỷ XIX, thành tựu khoa học kỹ thuật như lò luyện kim, máy móc ra đời (động cơ điêzen, máy phát điện, xe hơi, tàu hỏa).<br>
-                        <span class="inline-block mt-2 text-indigo-600 font-semibold"><i class="fas fa-arrow-right mr-1"></i> Làm xuất hiện những ngành sản xuất mới, thúc đẩy tăng năng suất lao động => thúc đẩy phát triển sản xuất quy mô lớn.</span></p>
+                        <h4 class="font-bold text-lg text-slate-900 mb-2">Một là, do sự phát triển của lực lượng sản xuất</h4>
+                        <p class="text-slate-600 leading-relaxed">
+                            Yếu tố khoa học kỹ thuật phát triển tạo ra các xí nghiệp lớn. Cuối thế kỷ XIX, thành tựu khoa học kỹ thuật như lò luyện kim, máy móc ra đời như: động cơ điêzen, máy phát điện, những phương tiện vận tải (xe hơi, tàu hỏa).
+                        </p>
+                        <p class="mt-3 text-indigo-700 font-semibold">
+                            <i class="fas fa-arrow-right mr-1"></i> Làm xuất hiện những ngành sản xuất mới, đồng thời thúc đẩy tăng năng suất lao động và phát triển sản xuất quy mô lớn.
+                        </p>
                     </div>
-                </div>
+                </article>
 
-                <!-- Nguyên nhân 2 -->
-                <div class="flex flex-col md:flex-row gap-4 items-start">
-                    <div class="flex-shrink-0 w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center text-slate-500">
+                <figure class="rounded-xl overflow-hidden shadow-sm border border-slate-100 bg-white">
+                    <img src="assets/pdf/xuong-san-xuat.png" alt="Xưởng sản xuất trong PDF" class="w-full max-h-[520px] object-cover">
+                </figure>
+
+                <article class="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-4">
+                    <div class="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center text-slate-500">
                         <i class="fas fa-people-arrows text-xl"></i>
                     </div>
                     <div>
-                        <h4 class="font-bold text-lg text-slate-800 mb-1">Hai là, do cạnh tranh</h4>
-                        <p class="text-slate-600 mb-2">Lênin khẳng định: <em>“Tự do cạnh tranh đẻ ra tập trung sản xuất và sự tập trung sản xuất này, khi phát triển đến một mức độ nhất định, lại dẫn đến sự độc quyền”</em>.</p>
-                        <ul class="list-disc list-inside text-slate-600 ml-2 space-y-1">
-                            <li>Doanh nghiệp vừa và nhỏ bị phá sản.</li>
-                            <li>Doanh nghiệp lớn bị suy yếu.</li>
-                        </ul>
-                        <span class="inline-block mt-2 text-indigo-600 font-semibold"><i class="fas fa-arrow-right mr-1"></i> Để tồn tại phải làm nên quy mô ngày càng lớn hơn thông qua việc tăng cường tích tụ, tập trung sản xuất và liên kết lại với nhau.</span>
+                        <h4 class="font-bold text-lg text-slate-900 mb-2">Hai là, do cạnh tranh</h4>
+                        <p class="text-slate-600 leading-relaxed italic font-serif">
+                            “Tự do cạnh tranh đẻ ra tập trung sản xuất và sự tập trung sản xuất này, khi phát triển đến một mức độ nhất định, lại dẫn đến sự độc quyền”.
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+                            <div class="bg-slate-50 border border-slate-100 rounded-xl p-4">
+                                <i class="fas fa-store-slash text-rose-500 mb-2"></i>
+                                <p class="text-slate-700 font-semibold">Doanh nghiệp vừa và nhỏ bị phá sản</p>
+                            </div>
+                            <div class="bg-slate-50 border border-slate-100 rounded-xl p-4">
+                                <i class="fas fa-arrow-trend-down text-amber-500 mb-2"></i>
+                                <p class="text-slate-700 font-semibold">Doanh nghiệp lớn bị suy yếu</p>
+                            </div>
+                        </div>
+                        <p class="mt-3 text-indigo-700 font-semibold">
+                            <i class="fas fa-arrow-right mr-1"></i> Doanh nghiệp còn tồn tại phải mở rộng quy mô qua tích tụ, tập trung sản xuất và liên kết lại với nhau.
+                        </p>
                     </div>
-                </div>
+                </article>
 
-                <!-- Nguyên nhân 3 -->
-                <div class="flex flex-col md:flex-row gap-4 items-start">
-                    <div class="flex-shrink-0 w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center text-slate-500">
-                        <i class="fas fa-chart-line text-xl"></i>
+                <article class="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-4">
+                    <div class="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center text-slate-500">
+                        <i class="fas fa-building-columns text-xl"></i>
                     </div>
                     <div>
-                        <h4 class="font-bold text-lg text-slate-800 mb-1">Ba là, do khủng hoảng và sự phát triển của hệ thống tín dụng</h4>
-                        <p class="text-slate-600">Sự khủng hoảng kinh tế 1873 thúc đẩy tập trung sản xuất. Giá cả độc quyền là giá cả do các tổ chức độc quyền áp đặt trong mua và bán hàng hóa.<br>
-                        <span class="inline-block mt-1 px-2 py-1 bg-slate-100 rounded text-sm text-slate-700">Giá cả độc quyền = Giá cả độc quyền cao (khi bán) + Giá cả độc quyền thấp (khi mua).</span></p>
+                        <h4 class="font-bold text-lg text-slate-900 mb-2">Ba là, do khủng hoảng và sự phát triển của hệ thống tín dụng</h4>
+                        <p class="text-slate-600 leading-relaxed">
+                            Sự khủng hoảng kinh tế 1873 thúc đẩy tập trung sản xuất. Giá cả độc quyền là giá cả do các tổ chức độc quyền áp đặt trong mua và bán hàng hóa.
+                        </p>
+                        <p class="inline-block mt-3 px-3 py-2 bg-slate-100 rounded-lg text-sm text-slate-700">
+                            Giá cả độc quyền gồm giá cả độc quyền cao khi bán và giá cả độc quyền thấp khi mua.
+                        </p>
                     </div>
-                </div>
-            </div>
-        </section>
+                </article>
 
-        <!-- Phần 2: Độc quyền Nhà nước -->
-        <section id="phan-2" class="glass-card rounded-2xl p-6 md:p-10 mb-10 fade-in-up" style="animation-delay: 0.4s; scroll-margin-top: 5rem;">
-            <div class="flex items-center gap-3 mb-6">
-                <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center text-amber-600 font-bold text-xl">2</div>
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-800">Độc quyền Nhà nước</h2>
-            </div>
-
-            <!-- Định nghĩa -->
-            <div class="bg-amber-50 border-l-4 border-amber-500 p-5 rounded-r-lg mb-8">
-                <h3 class="font-bold text-lg text-amber-900 mb-2"><i class="fas fa-landmark mr-2"></i>Khái niệm Độc quyền Nhà nước</h3>
-                <p class="text-slate-700 leading-relaxed">Độc quyền nhà nước là kiểu độc quyền trong đó nhà nước nắm giữ vị thế độc quyền trên cơ sở duy trì sức mạnh của các tổ chức độc quyền ở những lĩnh vực then chốt của nền kinh tế nhằm tạo ra sức mạnh vật chất cho sự ổn định của chế độ chính trị - xã hội ứng với điều kiện phát triển nhất định trong các thời kỳ lịch sử.</p>
-            </div>
-
-            <!-- Ảnh minh họa Độc quyền Nhà nước -->
-            <div class="w-full h-56 rounded-xl overflow-hidden shadow-sm mb-8 relative group">
-                <img src="https://images.unsplash.com/photo-1523995462485-3d171b5c8fa9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/20 to-transparent flex items-end p-5">
-                    <p class="text-white text-sm md:text-base font-medium"><i class="fas fa-info-circle mr-2 text-amber-400"></i> Sự điều tiết của Nhà nước vào các lĩnh vực then chốt</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <figure class="rounded-xl overflow-hidden shadow-sm border border-slate-100 bg-white">
+                        <img src="assets/pdf/khung-hoang-tin-dung.png" alt="Hình minh họa khủng hoảng và tín dụng" class="w-full h-full object-cover">
+                    </figure>
+                    <figure class="rounded-xl overflow-hidden shadow-sm border border-slate-100 bg-white">
+                        <img src="assets/pdf/khung-hoang-kinh-te.png" alt="Hình minh họa khủng hoảng kinh tế" class="w-full h-full object-cover">
+                    </figure>
                 </div>
             </div>
 
-            <!-- Grid 2 cột: Nguyên nhân & Bản chất -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                
-                <!-- Nguyên nhân -->
+            <div class="mt-10 bg-amber-50 border-l-4 border-amber-500 p-5 rounded-r-xl">
+                <h3 class="font-bold text-lg text-amber-950 mb-3"><i class="fas fa-landmark mr-2"></i>Độc quyền nhà nước</h3>
+                <p class="text-slate-700 leading-relaxed">
+                    Độc quyền nhà nước là kiểu độc quyền trong đó nhà nước nắm giữ vị thế độc quyền trên cơ sở duy trì sức mạnh của các tổ chức độc quyền ở những lĩnh vực then chốt của nền kinh tế nhằm tạo ra sức mạnh vật chất cho sự ổn định của chế độ chính trị - xã hội ứng với điều kiện phát triển nhất định trong các thời kỳ lịch sử.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
                 <div>
-                    <h3 class="font-bold text-xl text-slate-800 mb-4 border-b pb-2">Nguyên nhân hình thành</h3>
+                    <h3 class="font-bold text-xl text-slate-900 mb-4 border-b border-slate-200 pb-3">Nguyên nhân hình thành độc quyền nhà nước</h3>
                     <ul class="space-y-4">
                         <li class="flex gap-3">
                             <i class="fas fa-check-circle text-amber-500 mt-1"></i>
-                            <p class="text-slate-600"><strong class="text-slate-800">Tích tụ & tập trung tư bản lớn:</strong> Sinh ra cơ cấu kinh tế to lớn đòi hỏi điều tiết sản xuất, phân phối từ một trung tâm.</p>
+                            <p class="text-slate-600"><strong class="text-slate-900">Tích tụ và tập trung tư bản càng lớn:</strong> tập trung sản xuất càng cao, sinh ra những cơ cấu kinh tế to lớn đòi hỏi điều tiết từ một trung tâm.</p>
                         </li>
                         <li class="flex gap-3">
                             <i class="fas fa-check-circle text-amber-500 mt-1"></i>
-                            <p class="text-slate-600"><strong class="text-slate-800">Xuất hiện ngành mới quan trọng:</strong> Cần vốn lớn, thu hồi chậm, ít lợi nhuận. Nhà nước phải đứng ra đảm nhận, tạo điều kiện cho tư nhân kinh doanh ngành khác có lợi hơn.</p>
+                            <p class="text-slate-600"><strong class="text-slate-900">Xuất hiện ngành mới quan trọng:</strong> cần vốn đầu tư lớn, thu hồi vốn chậm và ít lợi nhuận, nên Nhà nước đứng ra đảm nhận phát triển.</p>
                         </li>
                         <li class="flex gap-3">
                             <i class="fas fa-check-circle text-amber-500 mt-1"></i>
-                            <p class="text-slate-600"><strong class="text-slate-800">Phân hóa giàu nghèo sâu sắc:</strong> Mâu thuẫn giữa Tư sản và Vô sản/Nhân dân lao động tăng cao. Nhà nước cần có vai trò xoa dịu.</p>
+                            <p class="text-slate-600"><strong class="text-slate-900">Phân hóa giàu - nghèo:</strong> độc quyền tư nhân làm tăng mâu thuẫn giữa tư sản với vô sản và nhân dân lao động, Nhà nước có vai trò xoa dịu mâu thuẫn.</p>
                         </li>
                         <li class="flex gap-3">
                             <i class="fas fa-check-circle text-amber-500 mt-1"></i>
-                            <p class="text-slate-600"><strong class="text-slate-800">Mở rộng kinh tế đối ngoại:</strong> Toàn cầu hóa vấp phải rào cản quốc gia, xung đột lợi ích. Cần sự điều tiết của Nhà nước trong quan hệ quốc tế.</p>
+                            <p class="text-slate-600"><strong class="text-slate-900">Mở rộng quan hệ kinh tế đối ngoại:</strong> quốc tế hóa kinh tế gặp rào cản quốc gia, dân tộc và xung đột lợi ích, cần Nhà nước điều tiết.</p>
                         </li>
                     </ul>
                 </div>
 
-                <!-- Bản chất -->
                 <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
-                    <h3 class="font-bold text-xl text-slate-800 mb-4 border-b pb-2">Bản chất</h3>
+                    <h3 class="font-bold text-xl text-slate-900 mb-4 border-b border-slate-200 pb-3">Bản chất của độc quyền nhà nước trong chủ nghĩa tư bản</h3>
                     <ul class="space-y-3">
-                        <li class="text-slate-600"><i class="fas fa-caret-right text-indigo-500 mr-2"></i>Phục vụ tổ chức độc quyền tư nhân và duy trì chủ nghĩa tư bản.</li>
-                        <li class="text-slate-600"><i class="fas fa-caret-right text-indigo-500 mr-2"></i>Các tập đoàn lớn ảnh hưởng chính sách Nhà nước; Nhà nước ban hành chính sách hỗ trợ khi cần.</li>
-                        <li class="text-slate-600"><i class="fas fa-caret-right text-indigo-500 mr-2"></i>Là nấc thang phát triển mới: Thị trường không còn tự điều tiết hoàn toàn, Nhà nước tham gia sâu vào kinh tế.</li>
-                        <li class="text-slate-600"><i class="fas fa-caret-right text-indigo-500 mr-2"></i>Quan hệ kinh tế - chính trị - xã hội gắn chặt (Sử dụng luật pháp, thuế, ngân sách).</li>
-                        <li class="text-slate-600"><i class="fas fa-caret-right text-indigo-500 mr-2"></i>Là hình thức vận động mới của QHSX TBCN, giúp vượt qua khủng hoảng và thích nghi.</li>
+                        <li class="text-slate-600"><i class="fas fa-caret-right text-indigo-500 mr-2"></i>Tổ chức độc quyền tư nhân và tiếp tục duy trì, phát triển chủ nghĩa tư bản.</li>
+                        <li class="text-slate-600"><i class="fas fa-caret-right text-indigo-500 mr-2"></i>Các tập đoàn lớn có ảnh hưởng đến chính sách của Nhà nước; Nhà nước ban hành chính sách hỗ trợ khi cần.</li>
+                        <li class="text-slate-600"><i class="fas fa-caret-right text-indigo-500 mr-2"></i>Là nấc thang phát triển mới của chủ nghĩa tư bản độc quyền; Nhà nước tham gia sâu hơn vào kinh tế.</li>
+                        <li class="text-slate-600"><i class="fas fa-caret-right text-indigo-500 mr-2"></i>Quan hệ kinh tế - chính trị - xã hội gắn chặt với nhau thông qua luật pháp, thuế và ngân sách.</li>
+                        <li class="text-slate-600"><i class="fas fa-caret-right text-indigo-500 mr-2"></i>Là hình thức vận động mới của quan hệ sản xuất tư bản chủ nghĩa, giúp chủ nghĩa tư bản vượt qua khủng hoảng và thích nghi với sự thay đổi của thế giới.</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <!-- Phần 3: Tác động -->
-        <section id="phan-3" class="glass-card rounded-2xl p-6 md:p-10 mb-12 fade-in-up" style="animation-delay: 0.6s; scroll-margin-top: 5rem;">
-            <div class="flex items-center gap-3 mb-8">
-                <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 font-bold text-xl">3</div>
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-800">Tác động của độc quyền</h2>
-            </div>
-            
-            <div class="flex flex-col md:flex-row gap-6 items-center mb-8 bg-slate-50 p-5 rounded-xl border border-slate-100">
-                <div class="md:w-1/3 h-32 md:h-40 rounded-lg overflow-hidden shadow-inner w-full">
-                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="" class="w-full h-full object-cover">
-                </div>
-                <div class="md:w-2/3">
-                    <p class="text-slate-600 text-lg md:text-xl leading-relaxed italic font-serif">"Tác động của độc quyền luôn thể hiện rõ rệt ở cả hai khía cạnh: <strong class="text-emerald-600">tích cực</strong> và <strong class="text-rose-600">tiêu cực</strong>, giống như hai mặt của một đồng xu trong nền kinh tế thị trường."</p>
+        <section id="phan-b" class="glass-card rounded-2xl p-6 md:p-10 mb-10 fade-in-up" style="animation-delay: 0.3s; scroll-margin-top: 5rem;">
+            <div class="flex items-start gap-4 mb-8">
+                <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 font-bold text-xl shrink-0">B</div>
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-slate-900">Tác động của độc quyền trong nền kinh tế thị trường</h2>
+                    <p class="text-slate-500 mt-2">Tác động của độc quyền, dù ở trình độ độc quyền tư nhân hay độc quyền nhà nước, thể hiện ở cả mặt tích cực và tiêu cực.</p>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Tích cực -->
-                <div class="bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-100 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-emerald-500 text-white rounded-full flex items-center justify-center text-2xl mb-4 shadow-lg shadow-emerald-500/30">
+                <div class="bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-100 rounded-2xl p-6 shadow-sm">
+                    <div class="w-12 h-12 bg-emerald-500 text-white rounded-full flex items-center justify-center text-2xl mb-4 shadow-lg shadow-emerald-500/25">
                         <i class="fas fa-thumbs-up"></i>
                     </div>
-                    <h3 class="font-bold text-xl text-emerald-900 mb-4">Tác động tích cực</h3>
+                    <h3 class="font-bold text-xl text-emerald-950 mb-4">Tác động tích cực</h3>
                     <ul class="space-y-3">
                         <li class="flex items-start gap-3">
                             <i class="fas fa-plus text-emerald-500 mt-1 text-sm"></i>
@@ -244,12 +248,11 @@
                     </ul>
                 </div>
 
-                <!-- Tiêu cực -->
-                <div class="bg-gradient-to-br from-rose-50 to-red-50 border border-rose-100 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-rose-500 text-white rounded-full flex items-center justify-center text-2xl mb-4 shadow-lg shadow-rose-500/30">
+                <div class="bg-gradient-to-br from-rose-50 to-red-50 border border-rose-100 rounded-2xl p-6 shadow-sm">
+                    <div class="w-12 h-12 bg-rose-500 text-white rounded-full flex items-center justify-center text-2xl mb-4 shadow-lg shadow-rose-500/25">
                         <i class="fas fa-thumbs-down"></i>
                     </div>
-                    <h3 class="font-bold text-xl text-rose-900 mb-4">Tác động tiêu cực</h3>
+                    <h3 class="font-bold text-xl text-rose-950 mb-4">Tác động tiêu cực</h3>
                     <ul class="space-y-3">
                         <li class="flex items-start gap-3">
                             <i class="fas fa-minus text-rose-500 mt-1 text-sm"></i>
@@ -261,129 +264,79 @@
                         </li>
                         <li class="flex items-start gap-3">
                             <i class="fas fa-minus text-rose-500 mt-1 text-sm"></i>
-                            <p class="text-slate-700">Bị chi phối bởi nhóm lợi ích cục bộ hoặc làm tăng sự phân hóa giàu - nghèo khi độc quyền tư nhân chi phối kinh tế, xã hội.</p>
+                            <p class="text-slate-700">Bị chi phối bởi nhóm lợi ích cục bộ hoặc khi độc quyền tư nhân chi phối các quan hệ kinh tế, xã hội sẽ gây ra hiện tượng làm tăng sự phân hóa giàu - nghèo.</p>
                         </li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <!-- CTA Section (Game Link) -->
-        <section id="thu-thach" class="mt-16 fade-in-up" style="animation-delay: 0.8s; scroll-margin-top: 5rem;">
-            <div class="relative bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-800 rounded-3xl p-8 md:p-12 text-center text-white shadow-2xl overflow-hidden">
-                <!-- Background decorative elements -->
-                <div class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-white opacity-10 rounded-full blur-2xl"></div>
-                <div class="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-indigo-400 opacity-20 rounded-full blur-2xl"></div>
-                
-                <div class="relative z-10">
-                    <div class="inline-block p-4 bg-white/20 rounded-full mb-6 backdrop-blur-sm">
-                        <i class="fas fa-rocket text-4xl text-amber-300"></i>
-                    </div>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4 font-serif">Bạn đã sẵn sàng trở thành Nhà Khám Phá?</h2>
-                    <p class="text-lg md:text-xl mb-8 text-indigo-100 max-w-2xl mx-auto">Đừng chỉ đọc lý thuyết! Hãy hóa thân thành nhà nghiên cứu kinh tế trẻ, tương tác trực tiếp với thị trường và tự tay mở khóa các trạm tri thức về Cạnh tranh & Độc quyền.</p>
-                    
-                    <a href="/thu-thach" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-indigo-900 bg-amber-400 rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(251,191,36,0.6)] focus:outline-none focus:ring-4 focus:ring-amber-300">
-                        <span class="absolute w-0 h-0 transition-all duration-500 ease-out bg-white rounded-full group-hover:w-full group-hover:h-56 opacity-10"></span>
-                        <span class="relative flex items-center text-lg">
-                            <i class="fas fa-play-circle mr-2 text-2xl"></i> Tham gia Thử thách Hành Trình Kinh Tế
-                        </span>
-                    </a>
-                    <p class="mt-4 text-sm text-indigo-200 opacity-80">Click để chuyển đến trang tương tác trực quan 3D & Mini-games</p>
+        <section id="phan-c" class="glass-card rounded-2xl p-6 md:p-10 fade-in-up" style="animation-delay: 0.45s; scroll-margin-top: 5rem;">
+            <div class="flex items-start gap-4 mb-8">
+                <div class="w-12 h-12 rounded-full bg-sky-100 flex items-center justify-center text-sky-700 font-bold text-xl shrink-0">C</div>
+                <div>
+                    <span class="inline-flex px-3 py-1 rounded-full bg-rose-100 text-rose-700 text-sm font-bold mb-3">Bổ sung thêm phần nội dung</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-slate-900">Quan hệ cạnh tranh trong trạng thái độc quyền</h2>
                 </div>
             </div>
-        </section>
 
-        <!-- Sơ đồ tư duy tổng kết -->
-        <section id="so-do-tu-duy" class="glass-card rounded-2xl p-6 md:p-10 mt-12 fade-in-up" style="animation-delay: 1s; scroll-margin-top: 5rem;">
-            <div class="flex items-center gap-3 mb-8">
-                <div class="w-10 h-10 rounded-full bg-sky-100 flex items-center justify-center text-sky-600 font-bold text-xl">
-                    <i class="fas fa-diagram-project text-base"></i>
-                </div>
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-800">Sơ đồ tư duy tổng kết</h2>
+            <div class="bg-sky-50 border-l-4 border-sky-500 p-5 rounded-r-xl mb-7">
+                <p class="text-slate-700 leading-relaxed">
+                    Độc quyền sinh ra từ cạnh tranh tự do. Nhưng sự xuất hiện của độc quyền không thủ tiêu cạnh tranh. Trái lại, độc quyền làm cho cạnh tranh trở nên đa dạng, gay gắt hơn.
+                </p>
             </div>
 
-            <div class="relative rounded-2xl bg-gradient-to-br from-slate-50 via-white to-sky-50 border border-slate-100 p-5 md:p-8 overflow-hidden">
-                <div class="hidden md:block absolute left-1/2 top-24 bottom-24 w-px bg-slate-200"></div>
-                <div class="hidden md:block absolute left-24 right-24 top-1/2 h-px bg-slate-200"></div>
+            <p class="text-slate-600 leading-relaxed mb-6">
+                Không chỉ tồn tại sự cạnh tranh giữa các chủ thể sản xuất kinh doanh nhỏ và vừa mà còn có thêm các loại cạnh tranh giữa các tổ chức độc quyền:
+            </p>
 
-                <div class="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8 items-center">
-                    <div class="space-y-5">
-                        <div class="bg-white border border-indigo-100 rounded-xl p-5 shadow-sm">
-                            <div class="flex items-center gap-3 mb-3">
-                                <span class="w-9 h-9 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center">
-                                    <i class="fas fa-seedling"></i>
-                                </span>
-                                <h3 class="font-bold text-indigo-900">Nguồn gốc</h3>
-                            </div>
-                            <ul class="space-y-2 text-sm text-slate-600">
-                                <li>Tập trung sản xuất</li>
-                                <li>Cạnh tranh gay gắt</li>
-                                <li>Khủng hoảng và tín dụng</li>
-                            </ul>
-                        </div>
-
-                        <div class="bg-white border border-amber-100 rounded-xl p-5 shadow-sm">
-                            <div class="flex items-center gap-3 mb-3">
-                                <span class="w-9 h-9 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center">
-                                    <i class="fas fa-landmark"></i>
-                                </span>
-                                <h3 class="font-bold text-amber-900">Độc quyền Nhà nước</h3>
-                            </div>
-                            <ul class="space-y-2 text-sm text-slate-600">
-                                <li>Nhà nước nắm lĩnh vực then chốt</li>
-                                <li>Điều tiết bằng luật pháp, thuế, ngân sách</li>
-                            </ul>
-                        </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+                <article class="bg-white border border-slate-100 rounded-xl p-5 shadow-sm">
+                    <div class="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center mb-4">
+                        <i class="fas fa-store"></i>
                     </div>
+                    <h3 class="font-bold text-lg text-slate-900 mb-3">Với doanh nghiệp ngoài độc quyền</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Độc quyền mua nguyên liệu đầu vào; độc quyền phương tiện vận tải; độc quyền tín dụng... để loại bỏ các chủ thể yếu thế hơn ra khỏi thị trường.
+                    </p>
+                </article>
 
-                    <div class="mx-auto w-full max-w-xs aspect-square rounded-full bg-gradient-to-br from-slate-900 to-indigo-800 text-white shadow-xl flex flex-col items-center justify-center text-center p-8 border-8 border-white">
-                        <i class="fas fa-network-wired text-4xl text-amber-300 mb-4"></i>
-                        <h3 class="font-bold text-2xl leading-snug">Cạnh tranh độc quyền</h3>
-                        <p class="text-sm text-indigo-100 mt-3">Liên kết doanh nghiệp lớn, kiểm soát thị trường và giá cả</p>
+                <article class="bg-white border border-slate-100 rounded-xl p-5 shadow-sm">
+                    <div class="w-10 h-10 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center mb-4">
+                        <i class="fas fa-handshake-angle"></i>
                     </div>
+                    <h3 class="font-bold text-lg text-slate-900 mb-3">Giữa các tổ chức độc quyền</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Cạnh tranh trong cùng một ngành có thể kết thúc bằng thỏa hiệp hoặc sự phá sản của một bên; đồng thời có cạnh tranh giữa các tổ chức khác ngành liên quan về nguồn lực đầu vào.
+                    </p>
+                </article>
 
-                    <div class="space-y-5">
-                        <div class="bg-white border border-emerald-100 rounded-xl p-5 shadow-sm">
-                            <div class="flex items-center gap-3 mb-3">
-                                <span class="w-9 h-9 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center">
-                                    <i class="fas fa-circle-plus"></i>
-                                </span>
-                                <h3 class="font-bold text-emerald-900">Tác động tích cực</h3>
-                            </div>
-                            <ul class="space-y-2 text-sm text-slate-600">
-                                <li>Thúc đẩy khoa học - kỹ thuật</li>
-                                <li>Tăng năng suất lao động</li>
-                                <li>Phát triển sản xuất lớn hiện đại</li>
-                            </ul>
-                        </div>
-
-                        <div class="bg-white border border-rose-100 rounded-xl p-5 shadow-sm">
-                            <div class="flex items-center gap-3 mb-3">
-                                <span class="w-9 h-9 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center">
-                                    <i class="fas fa-circle-minus"></i>
-                                </span>
-                                <h3 class="font-bold text-rose-900">Tác động tiêu cực</h3>
-                            </div>
-                            <ul class="space-y-2 text-sm text-slate-600">
-                                <li>Cạnh tranh không hoàn hảo</li>
-                                <li>Kìm hãm tiến bộ kỹ thuật</li>
-                                <li>Làm sâu sắc phân hóa giàu - nghèo</li>
-                            </ul>
-                        </div>
+                <article class="bg-white border border-slate-100 rounded-xl p-5 shadow-sm">
+                    <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mb-4">
+                        <i class="fas fa-users-gear"></i>
                     </div>
-                </div>
+                    <h3 class="font-bold text-lg text-slate-900 mb-3">Trong nội bộ tổ chức độc quyền</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Doanh nghiệp tham gia tổ chức độc quyền có thể cạnh tranh với nhau; các thành viên cạnh tranh để chiếm tỷ lệ cổ phần khống chế, từ đó chi phối và phân chia lợi ích có lợi hơn.
+                    </p>
+                </article>
+            </div>
+
+            <div class="mt-8 bg-slate-900 text-white rounded-2xl p-6 md:p-8">
+                <p class="text-lg md:text-xl font-semibold leading-relaxed">
+                    <i class="fas fa-arrow-right text-amber-300 mr-2"></i>
+                    Trong nền kinh tế thị trường hiện đại, cạnh tranh và độc quyền luôn cùng tồn tại song hành với nhau.
+                </p>
             </div>
         </section>
 
     </main>
 
-    <footer class="bg-slate-900 text-slate-400 py-8 text-center mt-12 border-t border-slate-800">
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center mt-12 border-t border-slate-800 px-4">
         <p>© 2026 - Sản phẩm sáng tạo thực hiện bởi <strong>Nhóm 3</strong> - Lớp MLN122</p>
     </footer>
 
-    <!-- Scripts -->
     <script>
-        // Hiệu ứng Navbar mờ/đổi màu khi cuộn trang
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 50) {
