@@ -554,6 +554,11 @@
                     </div>
                     <div class="bg-white border border-slate-100 rounded-2xl rounded-tl-sm p-3 shadow-sm text-sm text-slate-700">
                         Xin chào! Tôi là Trợ lý AI. Tôi có thể giúp gì cho bạn về chủ đề Cạnh tranh và Độc quyền?
+                        <div class="mt-3 flex flex-wrap gap-2">
+                            <button class="chat-suggest-btn text-xs bg-indigo-50 text-indigo-600 border border-indigo-100 rounded-full px-3 py-1.5 hover:bg-indigo-100 transition-colors text-left" onclick="sendSuggestedMessage('Độc quyền nhà nước là gì?')">Độc quyền nhà nước là gì?</button>
+                            <button class="chat-suggest-btn text-xs bg-indigo-50 text-indigo-600 border border-indigo-100 rounded-full px-3 py-1.5 hover:bg-indigo-100 transition-colors text-left" onclick="sendSuggestedMessage('Biểu hiện của cạnh tranh độc quyền?')">Biểu hiện của cạnh tranh độc quyền?</button>
+                            <button class="chat-suggest-btn text-xs bg-indigo-50 text-indigo-600 border border-indigo-100 rounded-full px-3 py-1.5 hover:bg-indigo-100 transition-colors text-left" onclick="sendSuggestedMessage('Tác động của độc quyền?')">Tác động của độc quyền?</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -602,9 +607,21 @@
         chatToggle.addEventListener('click', toggleChat);
         closeChatBtn.addEventListener('click', toggleChat);
 
-        function sendMessage() {
+        function sendSuggestedMessage(msg) {
+            chatInput.value = msg;
+            sendMessage();
+        }
+
+        async function sendMessage() {
             const message = chatInput.value.trim();
             if (!message) return;
+
+            // Disable input and button while waiting
+            chatInput.disabled = true;
+            sendChatBtn.disabled = true;
+            
+            // Remove suggestions if they exist
+            document.querySelectorAll('.chat-suggest-btn').forEach(btn => btn.style.display = 'none');
 
             // User Message
             const userMsgHtml = `
@@ -621,21 +638,65 @@
             chatInput.value = '';
             chatBody.scrollTop = chatBody.scrollHeight;
 
-            // Simulate Bot Response
-            setTimeout(() => {
+            // Loading indicator
+            const loadingId = 'loading-' + Date.now();
+            const loadingHtml = `
+                <div id="${loadingId}" class="flex items-start gap-2 max-w-[85%]">
+                    <div class="w-8 h-8 rounded-full bg-indigo-100 flex-shrink-0 flex items-center justify-center text-indigo-600 text-sm">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="bg-white border border-slate-100 rounded-2xl rounded-tl-sm p-3 shadow-sm text-sm text-slate-500 flex items-center gap-2">
+                        <i class="fas fa-circle-notch fa-spin"></i> Đang suy nghĩ...
+                    </div>
+                </div>
+            `;
+            chatBody.insertAdjacentHTML('beforeend', loadingHtml);
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message })
+                });
+                const data = await response.json();
+                
+                // Remove loading
+                const loadingEl = document.getElementById(loadingId);
+                if (loadingEl) loadingEl.remove();
+
                 const botMsgHtml = `
                     <div class="flex items-start gap-2 max-w-[85%]">
                         <div class="w-8 h-8 rounded-full bg-indigo-100 flex-shrink-0 flex items-center justify-center text-indigo-600 text-sm">
                             <i class="fas fa-robot"></i>
                         </div>
-                        <div class="bg-white border border-slate-100 rounded-2xl rounded-tl-sm p-3 shadow-sm text-sm text-slate-700">
-                            Tính năng trả lời tự động bằng AI đang được phát triển. Vui lòng quay lại sau!
+                        <div class="bg-white border border-slate-100 rounded-2xl rounded-tl-sm p-3 shadow-sm text-sm text-slate-700 whitespace-pre-wrap">
+                            ${data.reply ? data.reply.replace(/</g, "&lt;").replace(/>/g, "&gt;") : "Xin lỗi, đã có lỗi xảy ra."}
                         </div>
                     </div>
                 `;
                 chatBody.insertAdjacentHTML('beforeend', botMsgHtml);
+            } catch (error) {
+                const loadingEl = document.getElementById(loadingId);
+                if (loadingEl) loadingEl.remove();
+                
+                const errorMsgHtml = `
+                    <div class="flex items-start gap-2 max-w-[85%]">
+                        <div class="w-8 h-8 rounded-full bg-red-100 flex-shrink-0 flex items-center justify-center text-red-600 text-sm">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="bg-white border border-red-100 rounded-2xl rounded-tl-sm p-3 shadow-sm text-sm text-red-600">
+                            Lỗi kết nối đến máy chủ. Vui lòng thử lại sau.
+                        </div>
+                    </div>
+                `;
+                chatBody.insertAdjacentHTML('beforeend', errorMsgHtml);
+            } finally {
+                chatInput.disabled = false;
+                sendChatBtn.disabled = false;
+                chatInput.focus();
                 chatBody.scrollTop = chatBody.scrollHeight;
-            }, 1000);
+            }
         }
 
         sendChatBtn.addEventListener('click', sendMessage);

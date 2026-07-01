@@ -158,6 +158,65 @@ async function handleLeaderboard(req, res) {
   sendJson(res, 405, { error: "Method not allowed." });
 }
 
+async function handleChat(req, res) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  if (req.method === "OPTIONS") {
+    res.writeHead(204);
+    res.end();
+    return;
+  }
+
+  if (req.method !== "POST") {
+    sendJson(res, 405, { error: "Method not allowed." });
+    return;
+  }
+
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) {
+    sendJson(res, 500, { error: "Missing Gemini API key." });
+    return;
+  }
+
+  const { message } = await readBody(req);
+  if (!message || typeof message !== "string") {
+    sendJson(res, 400, { error: "Invalid message payload." });
+    return;
+  }
+
+  const systemPrompt = "Bạn là một chuyên gia kinh tế, đóng vai trò là Trợ lý AI trên trang web học tập về chủ đề Cạnh tranh và Độc quyền trong nền kinh tế thị trường. Hãy trả lời ngắn gọn, súc tích (dưới 150 chữ), dễ hiểu và thân thiện các câu hỏi liên quan đến chủ đề này. Dùng ngôn ngữ tự nhiên, mạch lạc. Nếu người dùng hỏi về chủ đề khác hoàn toàn không liên quan đến kinh tế, giáo dục hay môn học, hãy khéo léo từ chối và hướng họ quay lại chủ đề Cạnh tranh và Độc quyền. Định dạng kết quả dạng plain text (không dùng markdown in đậm in nghiêng, có thể dùng dấu gạch ngang đầu dòng).";
+
+  try {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        contents: [
+          { role: "user", parts: [{ text: systemPrompt + "\n\nCâu hỏi của người dùng: " + message }] }
+        ],
+      }),
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      console.error("[chat] Gemini API error:", data);
+      sendJson(res, response.status, { error: "Error from AI provider." });
+      return;
+    }
+
+    const aiMessage = data.candidates?.[0]?.content?.parts?.[0]?.text || "Xin lỗi, tôi không thể trả lời lúc này do lỗi hệ thống.";
+    
+    sendJson(res, 200, { reply: aiMessage });
+  } catch (error) {
+    console.error("[chat] POST request failed", error);
+    sendJson(res, 502, { error: "Failed to connect to AI provider." });
+  }
+}
+
 function serveStatic(req, res) {
   const reqUrl = new URL(req.url, `http://localhost:${port}`);
   let filePath = decodeURIComponent(reqUrl.pathname);
@@ -205,6 +264,14 @@ function serveStatic(req, res) {
 const server = http.createServer((req, res) => {
   if (req.url.startsWith("/api/leaderboard")) {
     handleLeaderboard(req, res).catch((error) => {
+      console.error(error);
+      sendJson(res, 500, { error: "Internal server error." });
+    });
+    return;
+  }
+
+  if (req.url.startsWith("/api/chat")) {
+    handleChat(req, res).catch((error) => {
       console.error(error);
       sendJson(res, 500, { error: "Internal server error." });
     });
