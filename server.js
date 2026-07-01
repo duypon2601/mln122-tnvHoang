@@ -189,7 +189,7 @@ async function handleChat(req, res) {
   const systemPrompt = "Bạn là một chuyên gia kinh tế, đóng vai trò là Trợ lý AI trên trang web học tập về chủ đề Cạnh tranh và Độc quyền trong nền kinh tế thị trường. Hãy trả lời ngắn gọn, súc tích (dưới 150 chữ), dễ hiểu và thân thiện các câu hỏi liên quan đến chủ đề này. Dùng ngôn ngữ tự nhiên, mạch lạc. Nếu người dùng hỏi về chủ đề khác hoàn toàn không liên quan đến kinh tế, giáo dục hay môn học, hãy khéo léo từ chối và hướng họ quay lại chủ đề Cạnh tranh và Độc quyền. Định dạng kết quả dạng plain text (không dùng markdown in đậm in nghiêng, có thể dùng dấu gạch ngang đầu dòng).";
 
   try {
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent?key=${apiKey}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
