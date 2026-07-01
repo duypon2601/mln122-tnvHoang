@@ -523,7 +523,13 @@
 
     </main>
 
-    <footer class="bg-slate-900 text-slate-400 py-8 text-center mt-12 border-t border-slate-800">
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center mt-12 border-t border-slate-800 flex flex-col items-center">
+        <div class="mb-6 flex flex-col items-center">
+            <p class="mb-3 text-sm text-slate-300 font-medium">Quét mã QR để truy cập nhanh</p>
+            <div class="p-2 bg-white rounded-xl shadow-lg inline-block hover:scale-105 transition-transform duration-300">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://mln122-tnv-hoang.vercel.app/" alt="QR Code" class="w-24 h-24 sm:w-32 sm:h-32 rounded-lg">
+            </div>
+        </div>
         <p>© 2026 - Sản phẩm sáng tạo thực hiện bởi <strong>Nhóm 3</strong> - Lớp MLN122</p>
     </footer>
 
